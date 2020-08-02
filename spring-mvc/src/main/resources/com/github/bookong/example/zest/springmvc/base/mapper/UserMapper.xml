@@ -6,10 +6,11 @@
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="ext_info" jdbcType="CHAR" property="extInfo" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, login_name, password, nickname, create_time
+    id, login_name, password, nickname, ext_info, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 

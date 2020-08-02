@@ -11,6 +11,8 @@ public class User {
 
     private String nickname;
 
+    private String extInfo;
+
     private Date createTime;
 
     public Long getId() {
@@ -43,6 +45,14 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public String getExtInfo() {
+        return extInfo;
+    }
+
+    public void setExtInfo(String extInfo) {
+        this.extInfo = extInfo == null ? null : extInfo.trim();
     }
 
     public Date getCreateTime() {
