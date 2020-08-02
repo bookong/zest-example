@@ -220,7 +220,7 @@
         <dependency>
             <groupId>com.github.bookong</groupId>
             <artifactId>zest</artifactId>
-            <version>0.2.19</version>
+            <version>0.2.25-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>

@@ -9,19 +9,20 @@
         http://www.springframework.org/schema/aop       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         http://www.springframework.org/schema/tx        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.github.bookong.example.zest.springmvc.base.entity" />
+    <description>Spring RESTful web service configuration</description>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
     </bean>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.github.bookong.example.zest.springmvc.base.mapper" />
-    </bean>
+    <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.github.bookong.example.zest.springmvc" />
 
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-
-    <tx:annotation-driven transaction-manager="txManager" />
-
+    <import resource="applicationContext-web.xml" />
+    <import resource="applicationContext-dataSource-test.xml" />
+    <import resource="applicationContext-db.xml" />
 </beans>

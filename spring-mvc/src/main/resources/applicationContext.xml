@@ -23,5 +23,6 @@
     <context:component-scan base-package="com.github.bookong.example.zest.springmvc" />
 
     <import resource="applicationContext-web.xml" />
+    <import resource="applicationContext-dataSource.xml" />
     <import resource="applicationContext-db.xml" />
 </beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/jdbc      http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <constructor-arg>
+            <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+                <property name="driverClass" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=-1" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
+        <jdbc:script location="classpath:zest/schema_h2.sql" />
+    </jdbc:initialize-database>
+
+</beans>
