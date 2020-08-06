@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Data xmlns="https://www.bookong.net/schema/zest/data" >
+    <Description>001 描述信息</Description>
+    <DataSources>
+        <DataSource Id="db1" Type="MySQL">
+            <Init>
+                <Table Name="xkcd">
+                    <Row id="1" title="查查" >
+                        <Field Name="alt">
+                            <Value><![CDATA[
+                                alt value
+                                哦哦
+                            ]]></Value>
+                        </Field>
+                    </Row>
+                </Table>
+            </Init>
+            <Target Ignore="false" onlyCoreData="false">
+                <Table Name="xkcd">
+                    <Row id="1" title="查查" >
+                        <Field Name="alt">
+                            <Value><![CDATA[
+xxx 1
+哈哈
+                            ]]></Value>
+                        </Field>
+                    </Row>
+                </Table>
+            </Target>
+        </DataSource>
+    </DataSources>
+    <TestParam>
+        <ParamField Path="a">x</ParamField>
+    </TestParam>
+</Data>
