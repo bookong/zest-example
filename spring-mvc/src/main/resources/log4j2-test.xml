@@ -8,7 +8,7 @@
         </Console>
 
         <Console name="ZestSqlConsole" target="SYSTEM_OUT">
-            <PatternLayout pattern="%msg%n"/>
+            <PatternLayout pattern="> %msg%n"/>
         </Console>
 
     </appenders>

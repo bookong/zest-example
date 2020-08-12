@@ -14,4 +14,10 @@ public class LoginController extends AbstractController {
     public String home(HttpSession session, Map<String, Object> map) {
         return template("home");
     }
+
+    @RequestMapping(value = "hi")
+    public String hi(Map<String, Object> map) {
+        map.put("name", "高达");
+        return "home/hi";
+    }
 }
