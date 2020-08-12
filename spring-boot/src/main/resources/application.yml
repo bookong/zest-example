@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /demo
+
+spring:
+  freemarker:
+    charset: UTF-8
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+  datasource:
+    name: zestdemo
+    url: jdbc:mysql://127.0.0.1:3306/zestdemo?useUnicode=true&characterEncoding=utf-8
+    username: zestdemo
+    password: zestdemo
+
+mybatis:
+  mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml

@@ -9,7 +9,7 @@
         <constructor-arg>
             <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
                 <property name="driverClass" value="org.h2.Driver" />
-                <property name="url" value="jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=-1" />
+                <property name="url" value="jdbc:h2:mem:zestdb;MODE=MYSQL;DB_CLOSE_DELAY=-1" />
             </bean>
         </constructor-arg>
     </bean>
