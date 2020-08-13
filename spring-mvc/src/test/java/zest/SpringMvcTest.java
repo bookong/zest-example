@@ -1,10 +1,11 @@
 package zest;
 
+import com.github.bookong.zest.annotation.ZestConnection;
+import com.github.bookong.zest.annotation.ZestDataSource;
+import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.core.testcase.ZestTestParam;
 import com.github.bookong.zest.runner.junit4.ZestSpringJUnit4ClassRunner;
-import com.github.bookong.zest.runner.junit4.annotation.ZestDataSource;
-import com.github.bookong.zest.runner.junit4.annotation.ZestJdbcConn;
-import com.github.bookong.zest.runner.junit4.annotation.ZestTest;
+import com.github.bookong.zest.util.ZestSqlHelper;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.sql.Connection;
 @RunWith(ZestSpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:applicationContext-test.xml" })
-public class DemoTest {
+public class SpringMvcTest {
 
     @Autowired
     protected @ZestDataSource("db1") DataSource dataSource;
@@ -33,13 +34,14 @@ public class DemoTest {
     }
 
     @ZestTest("001")
-    public void test1(Param param, @ZestJdbcConn("db1") Connection conn) throws Exception {
-        // ZestSqlHelper.showResultInConsole(conn, "select * from xkcd");
+    public void test1(Param param) {
+        ZestSqlHelper.showResultInConsole(param.conn, "select * from xkcd");
         System.out.println("test1()");
     }
 
     public static class Param implements ZestTestParam {
 
-        private String a;
+        public @ZestConnection("db1") Connection conn;
+        private String                           a;
     }
 }
