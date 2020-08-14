@@ -3,7 +3,8 @@ package com.github.bookong.example.zest.springboot.base.entity;
 import java.util.Date;
 
 public class User {
-    private Long id;
+
+    private Long   id;
 
     private String loginName;
 
@@ -13,7 +14,7 @@ public class User {
 
     private String extInfo;
 
-    private Date createTime;
+    private Date   createTime;
 
     public Long getId() {
         return id;

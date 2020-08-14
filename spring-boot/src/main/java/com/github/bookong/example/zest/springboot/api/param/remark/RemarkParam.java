@@ -1,18 +1,10 @@
-package com.github.bookong.example.zest.springboot.base.entity;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.io.Serializable;
-import java.util.Date;
+package com.github.bookong.example.zest.springboot.api.param.remark;
 
 /**
  * @author Jiang Xu
  */
-@Document(collection = "remark")
-public class Remark implements Serializable {
+public class RemarkParam {
 
-    @Id
     private String id;
 
     private String name;
@@ -20,8 +12,6 @@ public class Remark implements Serializable {
     private Long   userId;
 
     private String content;
-
-    private Date   createTime;
 
     public String getId() {
         return id;
@@ -53,13 +43,5 @@ public class Remark implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 }
