@@ -17,7 +17,7 @@ spring:
       validation-query: select 1 from dual
   data:
     mongodb:
-      uri: mongodb://zestdemo:zestdemo@localhost:27017/zestdemo
+      uri: mongodb://localhost:27017/zestdemo
 
 mybatis:
   mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
