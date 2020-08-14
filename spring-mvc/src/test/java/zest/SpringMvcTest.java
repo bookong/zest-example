@@ -1,10 +1,10 @@
 package zest;
 
 import com.github.bookong.zest.annotation.ZestConnection;
-import com.github.bookong.zest.annotation.ZestDataSource;
+import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.annotation.ZestTest;
-import com.github.bookong.zest.core.testcase.ZestTestParam;
 import com.github.bookong.zest.runner.junit4.ZestSpringJUnit4ClassRunner;
+import com.github.bookong.zest.testcase.ZestTestParam;
 import com.github.bookong.zest.util.ZestSqlHelper;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ import java.sql.Connection;
 public class SpringMvcTest {
 
     @Autowired
-    protected @ZestDataSource("db1") DataSource dataSource;
+    protected @ZestSource("db1") DataSource dataSource;
 
     @Before
     public void before1() throws Exception {

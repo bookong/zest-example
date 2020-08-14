@@ -1,10 +1,10 @@
 package com.github.bookong.example.zest.springboot;
 
 import com.github.bookong.zest.annotation.ZestConnection;
-import com.github.bookong.zest.annotation.ZestDataSource;
+import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.annotation.ZestTest;
-import com.github.bookong.zest.core.testcase.ZestTestParam;
 import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
+import com.github.bookong.zest.testcase.ZestTestParam;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -24,10 +24,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 // @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 class ApplicationTests {
 
-    private ZestJUnit5Worker                  zestWorker = new ZestJUnit5Worker();
+    private ZestJUnit5Worker              zestWorker = new ZestJUnit5Worker();
 
     @Autowired
-    private @ZestDataSource("db1") DataSource dataSource;
+    private @ZestSource("db1") DataSource dataSource;
 
     @BeforeAll
     static void initAll() {
