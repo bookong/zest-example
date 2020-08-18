@@ -3,7 +3,6 @@ package com.github.bookong.example.zest.springboot.controller;
 import com.github.bookong.example.zest.springboot.api.param.remark.RemarkParam;
 import com.github.bookong.example.zest.springboot.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.service.RemarkService;
-import com.github.bookong.example.zest.springboot.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,9 @@ public class RemarkController {
     private RemarkService remarkService;
 
     @PostMapping("/save")
-    public @ResponseBody BaseResponse save(@RequestBody String json) {
-        logger.info("save remark: {}", json);
-        remarkService.save(JsonUtil.fromJson(json, RemarkParam.class));
+    public @ResponseBody BaseResponse save(@RequestBody RemarkParam param) {
+        logger.info("remark/save");
+        remarkService.save(param);
 
         return new BaseResponse();
     }

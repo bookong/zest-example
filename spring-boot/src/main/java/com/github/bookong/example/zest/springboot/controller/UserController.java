@@ -5,12 +5,14 @@ import com.github.bookong.example.zest.springboot.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.api.resp.user.SaveUserResponse;
 import com.github.bookong.example.zest.springboot.base.entity.User;
 import com.github.bookong.example.zest.springboot.service.UserService;
-import com.github.bookong.example.zest.springboot.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author jiangxu
@@ -24,25 +26,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /**
-     * <pre>
-     * preHandle()
-     * save user
-     * postHandle()
-     * afterCompletion()
-     * 异常：
-     * preHandle()
-     * save user
-     * CustomInterceptAdvice handle exception
-     * afterCompletion()
-     * </pre>
-     * 
-     * @param param
-     * @return
-     */
     @PostMapping("/save")
     public @ResponseBody BaseResponse save(@RequestBody UserParam param) {
-        logger.info("save user");
+        logger.info("user/save");
         User user = userService.save(param);
 
         return new SaveUserResponse(user.getId());
