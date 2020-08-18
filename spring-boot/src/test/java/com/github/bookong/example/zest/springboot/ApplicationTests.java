@@ -4,7 +4,7 @@ import com.github.bookong.zest.annotation.ZestConnection;
 import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
-import com.github.bookong.zest.testcase.ZestTestParam;
+import com.github.bookong.zest.testcase.ZestParam;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -42,7 +42,7 @@ class ApplicationTests {
         });
     }
 
-    public static class Param implements ZestTestParam {
+    public static class Param implements ZestParam {
 
         private @ZestConnection("db1") Connection conn;
         private String                            a;

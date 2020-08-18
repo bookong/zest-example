@@ -24,10 +24,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * <pre>
+     * preHandle()
+     * save user
+     * postHandle()
+     * afterCompletion()
+     * 异常：
+     * preHandle()
+     * save user
+     * CustomInterceptAdvice handle exception
+     * afterCompletion()
+     * </pre>
+     * 
+     * @param param
+     * @return
+     */
     @PostMapping("/save")
-    public @ResponseBody BaseResponse save(@RequestBody String json) {
-        logger.info("save user: {}", json);
-        User user = userService.save(JsonUtil.fromJson(json, UserParam.class));
+    public @ResponseBody BaseResponse save(@RequestBody UserParam param) {
+        logger.info("save user");
+        User user = userService.save(param);
 
         return new SaveUserResponse(user.getId());
     }
