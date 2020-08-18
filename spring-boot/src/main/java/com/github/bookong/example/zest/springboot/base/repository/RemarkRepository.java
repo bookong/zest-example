@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @author Jiang Xu
  */
 @Repository
-public interface RemarkRepository extends MongoRepository<Remark, String> {
+public interface RemarkRepository extends MongoRepository<Remark, String>, RemarkRepositoryCustom {
 }
