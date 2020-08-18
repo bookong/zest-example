@@ -1,6 +1,6 @@
 package com.github.bookong.example.zest.springboot.service;
 
-import com.github.bookong.example.zest.springboot.api.param.user.UserParam;
+import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.entity.User;
 import com.github.bookong.example.zest.springboot.base.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;

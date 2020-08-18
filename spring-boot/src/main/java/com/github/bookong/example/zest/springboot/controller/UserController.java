@@ -1,8 +1,8 @@
 package com.github.bookong.example.zest.springboot.controller;
 
-import com.github.bookong.example.zest.springboot.api.param.user.UserParam;
-import com.github.bookong.example.zest.springboot.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springboot.api.resp.user.SaveUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
+import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
 import com.github.bookong.example.zest.springboot.base.entity.User;
 import com.github.bookong.example.zest.springboot.service.UserService;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.api.resp;
+package com.github.bookong.example.zest.springboot.base.api.resp;
 
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.exception.ApiException;

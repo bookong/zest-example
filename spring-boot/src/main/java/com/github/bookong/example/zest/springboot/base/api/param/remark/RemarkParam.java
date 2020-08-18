@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.api.param.remark;
+package com.github.bookong.example.zest.springboot.base.api.param.remark;
 
 /**
  * @author Jiang Xu
@@ -6,8 +6,6 @@ package com.github.bookong.example.zest.springboot.api.param.remark;
 public class RemarkParam {
 
     private String id;
-
-    private String name;
 
     private Long   userId;
 
@@ -19,14 +17,6 @@ public class RemarkParam {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getUserId() {

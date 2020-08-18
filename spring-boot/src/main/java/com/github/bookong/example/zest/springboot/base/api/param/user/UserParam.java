@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.api.param.user;
+package com.github.bookong.example.zest.springboot.base.api.param.user;
 
 /**
  * @author Jiang Xu

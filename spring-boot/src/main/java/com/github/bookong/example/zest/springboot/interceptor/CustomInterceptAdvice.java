@@ -1,6 +1,6 @@
 package com.github.bookong.example.zest.springboot.interceptor;
 
-import com.github.bookong.example.zest.springboot.api.resp.BaseResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
 import org.slf4j.Logger;

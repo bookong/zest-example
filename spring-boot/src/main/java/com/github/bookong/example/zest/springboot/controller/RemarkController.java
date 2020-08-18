@@ -1,7 +1,7 @@
 package com.github.bookong.example.zest.springboot.controller;
 
-import com.github.bookong.example.zest.springboot.api.param.remark.RemarkParam;
-import com.github.bookong.example.zest.springboot.api.resp.BaseResponse;
+import com.github.bookong.example.zest.springboot.base.api.param.remark.RemarkParam;
+import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.service.RemarkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

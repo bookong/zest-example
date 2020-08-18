@@ -1,6 +1,6 @@
-package com.github.bookong.example.zest.springboot.api.resp.user;
+package com.github.bookong.example.zest.springboot.base.api.resp.user;
 
-import com.github.bookong.example.zest.springboot.api.resp.BaseResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 
 /**
  * @author Jiang Xu

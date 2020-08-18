@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     name: zestdemo
-    url: jdbc:mysql://127.0.0.1:3306/zestdemo?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/zestdemo?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: zestdemo
     password: zestdemo
     type: org.apache.commons.dbcp2.BasicDataSource
@@ -17,7 +17,7 @@ spring:
       validation-query: select 1 from dual
   data:
     mongodb:
-      uri: mongodb://127.0.0.1:27017/zestdemo
+      uri: mongodb://localhost:27017/zestdemo
 
 mybatis:
   mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
