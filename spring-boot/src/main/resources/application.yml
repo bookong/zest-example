@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     name: zestdemo
-    url: jdbc:mysql://localhost:3306/zestdemo?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/zestdemo?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     username: zestdemo
     password: zestdemo
     type: org.apache.commons.dbcp2.BasicDataSource
@@ -18,6 +18,10 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/zestdemo
+  redis:
+    database: 0
+    host: localhost
+    port: 7000
 
 mybatis:
   mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml

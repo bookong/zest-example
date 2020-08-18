@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * @author Jiang Xu
  */
-@Repository
 public interface RemarkRepositoryCustom {
 
     /** 查询用户最近一天的评论 */
