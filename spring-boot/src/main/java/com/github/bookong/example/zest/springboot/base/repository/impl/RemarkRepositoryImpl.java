@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ public class RemarkRepositoryImpl implements RemarkRepositoryCustom {
     private MongoTemplate mongoTemplate;
 
     /** 查询用户最近一天的评论 */
-    public List<Remark> searchRemarkInTheLastDay(Long userId) {
+    public List<Remark> findOneDayRemarks(Long userId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId));
         query.addCriteria(Criteria.where("createTime").gt(DateUtils.addDays(new Date(), -1)));

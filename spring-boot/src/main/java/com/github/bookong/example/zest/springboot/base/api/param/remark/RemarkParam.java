@@ -1,23 +1,21 @@
 package com.github.bookong.example.zest.springboot.base.api.param.remark;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author Jiang Xu
  */
 public class RemarkParam {
 
-    private String id;
-
+    @NotNull(message = "userId cannot be Null")
     private Long   userId;
 
+    @NotNull(message = "xkcdId cannot be Null")
+    private Long   xkcdId;
+
+    @NotEmpty(message = "content cannot be empty")
     private String content;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public Long getUserId() {
         return userId;
@@ -33,5 +31,13 @@ public class RemarkParam {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Long getXkcdId() {
+        return xkcdId;
+    }
+
+    public void setXkcdId(Long xkcdId) {
+        this.xkcdId = xkcdId;
     }
 }

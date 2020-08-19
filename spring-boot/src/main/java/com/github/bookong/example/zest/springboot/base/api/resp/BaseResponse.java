@@ -8,11 +8,13 @@ import com.github.bookong.example.zest.springboot.exception.ApiException;
  */
 public class BaseResponse {
 
-    private int    code = ApiStatus.OK.getCode();
-    private String msg  = ApiStatus.OK.getMessage();
+    public static BaseResponse OK = new BaseResponse();
+
+    private int                code;
+    private String             msg;
 
     public BaseResponse(){
-        super();
+        this(ApiStatus.OK);
     }
 
     public BaseResponse(ApiException e){

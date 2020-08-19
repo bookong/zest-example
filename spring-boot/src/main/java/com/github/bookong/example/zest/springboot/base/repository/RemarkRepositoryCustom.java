@@ -11,5 +11,6 @@ import java.util.List;
 public interface RemarkRepositoryCustom {
 
     /** 查询用户最近一天的评论 */
-    List<Remark> searchRemarkInTheLastDay(Long userId);
+    List<Remark> findOneDayRemarks(Long userId);
+
 }

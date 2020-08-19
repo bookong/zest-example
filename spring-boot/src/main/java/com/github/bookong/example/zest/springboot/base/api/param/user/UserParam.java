@@ -1,5 +1,7 @@
 package com.github.bookong.example.zest.springboot.base.api.param.user;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @author Jiang Xu
  */
@@ -7,10 +9,13 @@ public class UserParam {
 
     private Long   id;
 
+    @NotEmpty(message = "loginName cannot be empty")
     private String loginName;
 
+    @NotEmpty(message = "password cannot be empty")
     private String password;
 
+    @NotEmpty(message = "nickname cannot be empty")
     private String nickname;
 
     public Long getId() {

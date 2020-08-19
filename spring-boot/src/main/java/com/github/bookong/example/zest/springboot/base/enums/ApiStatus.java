@@ -12,7 +12,9 @@ public enum ApiStatus {
 
                        FAIL_PARSE_PARAM(4, "Failed to parse parameters"),
 
-                       PARAM_ERROR(5, "Parameter error");
+                       PARAM_ERROR(5, "Parameter error"),
+
+                       CALL_OTHER_SYSTEM(6, "Failed to call other system");
 
     private int    code;
     private String message;
