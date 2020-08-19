@@ -15,6 +15,16 @@ spring:
       min-idle: 5
       initial-size: 5
       validation-query: select 1 from dual
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/zestdemo
+  redis:
+    database: 0
+    host: localhost
+    port: 7000
 
 mybatis:
   mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
+
+zestdemo:
+  token: F2020

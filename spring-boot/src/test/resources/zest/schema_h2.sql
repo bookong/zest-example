@@ -1,8 +1,10 @@
-CREATE TABLE `xkcd` (
-  `id` BIGINT NOT NULL COMMENT 'XKCD 漫画索引号',
-  `title` VARCHAR(1024) NOT NULL COMMENT '漫画标题',
-  `alt` VARCHAR(1024) NOT NULL COMMENT '漫画图片的替代文本',
-  `img` VARCHAR(512) NOT NULL COMMENT '漫画图片地址',
-  `pub_date` DATETIME NOT NULL COMMENT '漫画发布时间',
-  PRIMARY KEY (`id`)
+CREATE TABLE `user` (
+  `id`          bigint       NOT NULL AUTO_INCREMENT,
+  `login_name`  varchar(32)  NOT NULL ,
+  `password`    varchar(32)  NOT NULL ,
+  `nickname`    varchar(64)  NOT NULL ,
+  `ext_info`    json                   DEFAULT NULL ,
+  `create_time` datetime     NOT NULL ,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_u_1` (`login_name`)
 ) ;

@@ -29,7 +29,7 @@ public class CustomInterceptAdvice {
     private static final Logger logger = LoggerFactory.getLogger(CustomInterceptAdvice.class);
 
     @ExceptionHandler(value = { Exception.class })
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody BaseResponse handle(Exception e, HandlerMethod m) {
         BaseResponse resp = null;
         if (e instanceof ApiException) {
