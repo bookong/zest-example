@@ -1,8 +1,10 @@
 package com.github.bookong.example.zest.springboot.interceptor;
 
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
+import com.github.bookong.example.zest.springboot.conf.AppConfig;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,22 +19,23 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class CustomHandlerInterceptor implements HandlerInterceptor {
 
-    private @Value("${zestdemo.api.token}") String apiToken;
+    @Autowired
+    private AppConfig appConfig;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String token = StringUtils.trimToEmpty(request.getParameter("token"));
-        if (!StringUtils.equals(apiToken, token)) {
+        if (!StringUtils.equals(appConfig.getToken(), token)) {
             throw new ApiException(ApiStatus.PARAM_ERROR, "The token parameter is incorrect");
         }
         return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
     }
 }

@@ -21,6 +21,12 @@ public class Remark implements Serializable {
 
     private Long   userId;
 
+    /**
+     * http://xkcd.com 漫画ID
+     */
+    @Indexed
+    private Long   xkcdId;
+
     @Indexed
     private String content;
 
@@ -56,5 +62,13 @@ public class Remark implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Long getXkcdId() {
+        return xkcdId;
+    }
+
+    public void setXkcdId(Long xkcdId) {
+        this.xkcdId = xkcdId;
     }
 }

@@ -27,5 +27,4 @@ mybatis:
   mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
 
 zestdemo:
-  api:
-    token: F740F
+  token: F2020

@@ -24,7 +24,7 @@ public class UserService {
     private UserMapper                    userMapper;
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Transactional(rollbackFor = Exception.class)
     public User save(UserParam param) {
