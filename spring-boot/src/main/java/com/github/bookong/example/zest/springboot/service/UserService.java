@@ -42,9 +42,6 @@ public class UserService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-    @Autowired
-    private AppConfig                     appConfig;
-
     @Transactional(rollbackFor = Exception.class)
     public User save(UserParam param) {
         User user = new User();
@@ -57,10 +54,7 @@ public class UserService {
                 user.setCreateTime(new Date());
                 userMapper.insert(user);
 
-                UserAuth userAuth = new UserAuth();
-                userAuth.setUserId(user.getId());
-                userAuth.setAuth("login");
-                userAuthMapper.insert(userAuth);
+                addUserAuth(user);
             } else {
                 logger.info("update user:{} ", param.getId());
                 userMapper.updateByPrimaryKeySelective(user);
@@ -70,6 +64,13 @@ public class UserService {
         }
 
         return user;
+    }
+
+    public void addUserAuth(User user) {
+        UserAuth userAuth = new UserAuth();
+        userAuth.setUserId(user.getId());
+        userAuth.setAuth("login");
+        userAuthMapper.insert(userAuth);
     }
 
     public User get(Long userId) {

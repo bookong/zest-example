@@ -6,6 +6,7 @@ import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
+import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 /**
  * @author Jiang Xu
  */
-@SpringBootTest
 @ActiveProfiles("test")
+@SpringBootTest
 public abstract class AbstractZestTest {
 
     protected Logger              logger     = LoggerFactory.getLogger(getClass());
@@ -48,6 +49,7 @@ public abstract class AbstractZestTest {
     public void setupMockMvc() throws Exception {
         logger.info("setup MockMvc...");
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        MockitoAnnotations.initMocks(this);
     }
 
     public JSONObject doPostAndBaseVerify(String url, String requestBody, BaseResponse expected) {
@@ -73,7 +75,6 @@ public abstract class AbstractZestTest {
             return actual;
 
         } catch (AssertionError e) {
-            logger.info(responseJson);
             throw e;
         } catch (Exception e) {
             throw new RuntimeException(responseJson, e);

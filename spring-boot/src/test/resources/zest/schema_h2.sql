@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id`          bigint       NOT NULL AUTO_INCREMENT,
   `login_name`  varchar(32)  NOT NULL ,
@@ -9,6 +10,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `user_u_1` (`login_name`)
 ) ;
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user_auth` (
   `id`          bigint       NOT NULL AUTO_INCREMENT,
   `user_id`     bigint       NOT NULL ,

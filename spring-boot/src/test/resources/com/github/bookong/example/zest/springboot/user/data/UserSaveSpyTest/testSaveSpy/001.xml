@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Data xmlns="https://www.bookong.net/schema/zest/data">
+    <Description>An exception occurred when inserting user_auth table data, causing the transaction to roll back</Description>
+    <Sources>
+        <Source Id="mysql">
+            <Init>
+                <SqlTable Name="user" />
+                <SqlTable Name="user_auth"/>
+            </Init>
+            <Target>
+                <SqlTable Name="user" />
+                <SqlTable Name="user_auth"/>
+            </Target>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "loginName": "dio",
+    "nickname": "Dio Brando",
+    "password": "abc"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 3,
+    "msg": "Data access exception"
+}
+        ]]></ParamField>
+        <ParamField Name="errorWhenInsertUserAuth">true</ParamField>
+    </Param>
+</Data>
