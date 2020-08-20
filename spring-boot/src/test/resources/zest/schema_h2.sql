@@ -10,7 +10,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `user_u_1` (`login_name`)
 ) ;
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `user_auth`;
 CREATE TABLE `user_auth` (
   `id`          bigint       NOT NULL AUTO_INCREMENT,
   `user_id`     bigint       NOT NULL ,
