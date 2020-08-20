@@ -3,11 +3,8 @@ package com.github.bookong.example.zest.springboot;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
-import com.github.bookong.zest.util.ZestJsonUtil;
-import net.sf.json.JSONNull;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +20,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.sql.DataSource;
+
+import static org.hibernate.validator.internal.util.Contracts.assertTrue;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 /**
  * @author Jiang Xu
@@ -61,15 +61,15 @@ public abstract class AbstractZestTest {
             request.content(requestBody);
             MvcResult mvcResult = mockMvc.perform(request).andReturn();
             responseJson = mvcResult.getResponse().getContentAsString();
-            Assert.assertEquals("http status != 200", HttpStatus.SC_OK, mvcResult.getResponse().getStatus());
+            assertEquals("http status != 200", HttpStatus.SC_OK, mvcResult.getResponse().getStatus());
 
             JSONObject actual = JSONObject.fromObject(responseJson);
             if (showResponse) {
                 logger.info("response json:\n{}", actual.toString(4));
             }
 
-            Assert.assertEquals("code", expected.getCode(), actual.getInt("code"));
-            Assert.assertEquals("msg", expected.getMsg(), actual.getString("msg"));
+            assertEquals("code", expected.getCode(), actual.getInt("code"));
+            assertEquals("msg", expected.getMsg(), actual.getString("msg"));
             return actual;
 
         } catch (AssertionError e) {
@@ -85,9 +85,9 @@ public abstract class AbstractZestTest {
      */
     protected void assertEqual(String key, Long expected, JSONObject actual) {
         if (expected == null) {
-            Assert.assertTrue(String.format("%s must null", key), actual.get(key) == null);
+            assertTrue(actual.get(key) == null, String.format("%s must null", key));
         } else {
-            Assert.assertEquals(key, expected.longValue(), actual.getLong(key));
+            assertEquals(key, expected, actual.getLong(key));
         }
     }
 }

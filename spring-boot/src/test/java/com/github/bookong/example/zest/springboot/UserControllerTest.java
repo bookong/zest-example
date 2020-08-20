@@ -5,9 +5,7 @@ import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserRes
 import com.github.bookong.example.zest.springboot.controller.UserController;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
-import net.sf.json.JSONNull;
 import net.sf.json.JSONObject;
-import org.junit.Assert;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 

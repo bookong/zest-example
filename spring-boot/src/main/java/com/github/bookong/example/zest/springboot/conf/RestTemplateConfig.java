@@ -34,7 +34,7 @@ public class RestTemplateConfig {
             HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
             httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler());
             HttpClient httpClient = httpClientBuilder.build();
-            HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);// httpClient连接配置
+            HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
             clientHttpRequestFactory.setConnectTimeout(5000);
             clientHttpRequestFactory.setReadTimeout(3000);
             clientHttpRequestFactory.setConnectionRequestTimeout(500);
