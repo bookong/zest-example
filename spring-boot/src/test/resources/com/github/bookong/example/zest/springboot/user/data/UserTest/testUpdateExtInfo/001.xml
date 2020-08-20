@@ -1,54 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Data xmlns="https://www.bookong.net/schema/zest/data">
-    <Description>Added successfully</Description>
+    <Description>Update completed</Description>
     <Sources>
         <Source Id="mysql">
             <Init>
                 <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
+                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19" >
                         <Field Name="ext_info">
-                            <Null/>
+                            <Value>{"key1":"value1"}</Value>
                         </Field>
                     </Row>
                 </SqlTable>
-                <SqlTable Name="user_auth" />
             </Init>
             <Target>
                 <SqlTable Name="user">
                     <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
                         <Field Name="ext_info">
-                            <Null/>
+                            <Value>{"key1":"value1","key2":"value2"}</Value>
                         </Field>
                     </Row>
-                    <Row id="2" login_name="dio" password="900150983cd24fb0d6963f7d28e17f72" nickname="Dio Brando">
-                        <Field Name="ext_info">
-                            <Null/>
-                        </Field>
-                        <Field Name="create_time">
-                            <CurrentTime />
-                        </Field>
-                    </Row>
-                </SqlTable>
-                <SqlTable Name="user_auth" >
-                    <Row id="1" user_id="2" auth="login" />
                 </SqlTable>
             </Target>
         </Source>
     </Sources>
     <Param>
         <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="userId">1</ParamField>
         <ParamField Name="apiParam"><![CDATA[
 {
-    "loginName": "dio",
-    "nickname": "Dio Brando",
-    "password": "abc"
+    "key": "key2",
+    "value" : "value2"
 }
         ]]></ParamField>
         <ParamField Name="apiExpected"><![CDATA[
 {
     "code": 0,
-    "msg": "",
-    "id": 2
+    "msg": ""
 }
         ]]></ParamField>
     </Param>
