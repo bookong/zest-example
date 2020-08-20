@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 /**
  * @author Jiang Xu
  */
-public class UserSaveTest extends AbstractZestTest {
+public class UserTest extends AbstractZestTest {
 
     /**
      * 演示针对 /user/save 接口比较全面的测试，但不用 Mockito 进行 spy 处理
@@ -40,7 +40,7 @@ public class UserSaveTest extends AbstractZestTest {
     @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSave() {
-        return zestWorker.test(this, Param.class, param -> {
+        return zestWorker.test(this, SaveParam.class, param -> {
             SaveUserResponse expected = param.getExpected();
             JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
 
@@ -50,7 +50,7 @@ public class UserSaveTest extends AbstractZestTest {
         });
     }
 
-    public static class Param extends AbstractZestParam<SaveUserResponse> {
+    public static class SaveParam extends AbstractZestParam<SaveUserResponse> {
 
         public UserParam apiParam;
 
