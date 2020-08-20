@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.util.CollectionUtils;
@@ -36,7 +37,7 @@ public class CustomInterceptAdvice {
             resp = new BaseResponse((ApiException) e);
 
         } else if (e instanceof DataAccessException) {
-            resp = new BaseResponse(ApiStatus.SQL_ERROR);
+            resp = new BaseResponse(ApiStatus.DATA_ACCESS_ERROR);
             logger.error(m.getMethod().getName(), e);
 
         } else if (e instanceof HttpMessageConversionException) {

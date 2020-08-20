@@ -57,7 +57,7 @@ public abstract class AbstractZestTest {
     public JSONObject doPostAndBaseVerify(String url, String requestBody, BaseResponse expected, boolean showResponse) {
         String responseJson = "";
         try {
-            MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(url).accept(MediaType.APPLICATION_JSON);
+            MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
             request.content(requestBody);
             MvcResult mvcResult = mockMvc.perform(request).andReturn();
             responseJson = mvcResult.getResponse().getContentAsString();

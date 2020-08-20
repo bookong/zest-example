@@ -8,7 +8,7 @@ public enum ApiStatus {
 
                        SYSTEM_ERROR(1, "system error"),
 
-                       SQL_ERROR(3, "SQL execution exception"),
+                       DATA_ACCESS_ERROR(3, "Data access exception"),
 
                        FAIL_PARSE_PARAM(4, "Failed to parse parameters"),
 

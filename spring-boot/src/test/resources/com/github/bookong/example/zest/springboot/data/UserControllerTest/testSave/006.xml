@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Data xmlns="https://www.bookong.net/schema/zest/data">
+    <Description>added successfully</Description>
+    <Sources>
+        <Source Id="mysql">
+            <Init>
+                <SqlTable Name="user">
+                    <Row id="1" login_name="jojo" password="abc" nickname="Jonathan Joester" create_time="2020-08-19">
+                        <Field Name="ext_info">
+                            <Null/>
+                        </Field>
+                    </Row>
+                </SqlTable>
+            </Init>
+            <Target>
+                <SqlTable Name="user">
+                    <Row id="1" login_name="jojo" password="abc" nickname="Jonathan Joester" create_time="2020-08-19">
+                        <Field Name="ext_info">
+                            <Null/>
+                        </Field>
+                    </Row>
+                    <Row id="2" login_name="dio" password="900150983cd24fb0d6963f7d28e17f72" nickname="Dio Brando">
+                        <Field Name="ext_info">
+                            <Null/>
+                        </Field>
+                        <Field Name="create_time">
+                            <CurrentTime />
+                        </Field>
+                    </Row>
+                </SqlTable>
+            </Target>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "loginName": "dio",
+    "nickname": "Dio Brando",
+    "password": "abc"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 0,
+    "msg": "",
+    "id": 2
+}
+        ]]></ParamField>
+    </Param>
+</Data>

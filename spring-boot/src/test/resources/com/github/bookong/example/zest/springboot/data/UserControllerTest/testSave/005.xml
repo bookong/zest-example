@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Data xmlns="https://www.bookong.net/schema/zest/data">
+    <Description>Parameter nickname is empty</Description>
+    <Sources>
+        <Source Id="mysql">
+            <Init>
+                <SqlTable Name="user">
+                    <Row id="1" login_name="jojo" password="abc" nickname="Jonathan Joester" create_time="2020-08-19">
+                        <Field Name="ext_info">
+                            <Null/>
+                        </Field>
+                    </Row>
+                </SqlTable>
+            </Init>
+            <Target>
+                <SqlTable Name="user">
+                    <Row id="1" login_name="jojo" password="abc" nickname="Jonathan Joester" create_time="2020-08-19">
+                        <Field Name="ext_info">
+                            <Null/>
+                        </Field>
+                    </Row>
+                </SqlTable>
+            </Target>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "loginName": "dio",
+    "nickname": null,
+    "password": "abc"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 5,
+    "msg": "Parameter error(nickname cannot be empty)"
+}
+        ]]></ParamField>
+    </Param>
+</Data>

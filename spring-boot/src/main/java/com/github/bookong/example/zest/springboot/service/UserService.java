@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundValueOperations;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -46,16 +46,19 @@ public class UserService {
         BeanUtils.copyProperties(param, user);
         user.setPassword(convertPassword(param.getPassword()));
 
-        if (param.getId() == null) {
-            logger.info("add user login name \"{}\"", param.getLoginName());
-            user.setCreateTime(new Date());
-            userMapper.insert(user);
-        } else {
-            logger.info("update user:{} ", param.getId());
-            userMapper.updateByPrimaryKeySelective(user);
+        try {
+            if (param.getId() == null) {
+                logger.info("add user login name \"{}\"", param.getLoginName());
+                user.setCreateTime(new Date());
+                userMapper.insert(user);
+            } else {
+                logger.info("update user:{} ", param.getId());
+                userMapper.updateByPrimaryKeySelective(user);
+            }
+        } catch (DuplicateKeyException e) {
+            throw new ApiException(ApiStatus.PARAM_ERROR, "loginName duplicate");
         }
 
-        putToRedis(user.getId(), user);
         return user;
     }
 
@@ -83,7 +86,11 @@ public class UserService {
     }
 
     public void putToRedis(Long userId, User user) {
-        redisTemplate.boundValueOps(genRedisKey(userId)).set(JsonUtil.toJson(user), 10, TimeUnit.MINUTES);
+        try {
+            redisTemplate.boundValueOps(genRedisKey(userId)).set(JsonUtil.toJson(user), 10, TimeUnit.MINUTES);
+        } catch (Exception e) {
+            logger.debug("Failed to cache data in redis: {}", e.getMessage());
+        }
     }
 
     private String genRedisKey(Long userId) {
