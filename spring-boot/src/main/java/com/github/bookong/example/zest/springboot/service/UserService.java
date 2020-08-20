@@ -3,7 +3,9 @@ package com.github.bookong.example.zest.springboot.service;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInfoParam;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.entity.User;
+import com.github.bookong.example.zest.springboot.base.entity.UserAuth;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
+import com.github.bookong.example.zest.springboot.base.mapper.UserAuthMapper;
 import com.github.bookong.example.zest.springboot.base.mapper.UserMapper;
 import com.github.bookong.example.zest.springboot.conf.AppConfig;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
@@ -35,6 +37,9 @@ public class UserService {
     private UserMapper                    userMapper;
 
     @Autowired
+    private UserAuthMapper                userAuthMapper;
+
+    @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
     @Autowired
@@ -51,12 +56,17 @@ public class UserService {
                 logger.info("add user login name \"{}\"", param.getLoginName());
                 user.setCreateTime(new Date());
                 userMapper.insert(user);
+
+                UserAuth userAuth = new UserAuth();
+                userAuth.setUserId(user.getId());
+                userAuth.setAuth("login");
+                userAuthMapper.insert(userAuth);
             } else {
                 logger.info("update user:{} ", param.getId());
                 userMapper.updateByPrimaryKeySelective(user);
             }
         } catch (DuplicateKeyException e) {
-            throw new ApiException(ApiStatus.PARAM_ERROR, "loginName duplicate");
+            throw new ApiException(ApiStatus.PARAM_ERROR, "data conflict");
         }
 
         return user;

@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Jiang Xu
+ */
 @Mapper
 @Component
 public interface UserMapper {

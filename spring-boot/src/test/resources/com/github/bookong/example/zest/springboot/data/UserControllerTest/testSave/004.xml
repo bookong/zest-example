@@ -5,21 +5,23 @@
         <Source Id="mysql">
             <Init>
                 <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="abc" nickname="Jonathan Joester" create_time="2020-08-19">
+                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
                         <Field Name="ext_info">
                             <Null/>
                         </Field>
                     </Row>
                 </SqlTable>
+                <SqlTable Name="user_auth" />
             </Init>
             <Target>
                 <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="abc" nickname="Jonathan Joester" create_time="2020-08-19">
+                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
                         <Field Name="ext_info">
                             <Null/>
                         </Field>
                     </Row>
                 </SqlTable>
+                <SqlTable Name="user_auth" />
             </Target>
         </Source>
     </Sources>

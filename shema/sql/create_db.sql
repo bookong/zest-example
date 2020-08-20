@@ -13,3 +13,9 @@ CREATE TABLE `user` (
   UNIQUE KEY `user_u_1` (`login_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
+CREATE TABLE `user_auth` (
+  `id`          bigint       NOT NULL AUTO_INCREMENT,
+  `user_id`     bigint       NOT NULL ,
+  `auth`        varchar(32)  NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;

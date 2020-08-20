@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Data xmlns="https://www.bookong.net/schema/zest/data">
-    <Description>The token parameter is incorrect</Description>
+    <Description>An exception occurred when inserting user_auth table data, causing the transaction to roll back</Description>
     <Sources>
         <Source Id="mysql">
             <Init>
@@ -26,10 +26,10 @@
         </Source>
     </Sources>
     <Param>
-        <ParamField Name="apiToken">WRONG</ParamField>
+        <ParamField Name="apiToken">F2020</ParamField>
         <ParamField Name="apiParam"><![CDATA[
 {
-    "loginName": "dio",
+    "loginName": "jojo",
     "nickname": "Dio Brando",
     "password": "abc"
 }
@@ -37,7 +37,7 @@
         <ParamField Name="apiExpected"><![CDATA[
 {
     "code": 5,
-    "msg": "Parameter error(The token parameter is incorrect)"
+    "msg": "Parameter error(data conflict)"
 }
         ]]></ParamField>
     </Param>

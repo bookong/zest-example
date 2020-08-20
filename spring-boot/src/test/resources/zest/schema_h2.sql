@@ -8,3 +8,10 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_u_1` (`login_name`)
 ) ;
+
+CREATE TABLE `user_auth` (
+  `id`          bigint       NOT NULL AUTO_INCREMENT,
+  `user_id`     bigint       NOT NULL ,
+  `auth`        varchar(32)  NOT NULL ,
+  PRIMARY KEY (`id`)
+) ;

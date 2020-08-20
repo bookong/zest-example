@@ -28,7 +28,7 @@ public class UserControllerTest extends AbstractZestTest {
      * 005.xml - save - Parameter nickname is empty
      * 006.xml - save - added successfully
      * 007.xml - save - Parameter loginName unique index conflict when adding
-     * 008.xml - save - 模拟新增时发生数据库连接异常
+     * 008.xml - save - An exception occurred when inserting user_auth table data, causing the transaction to roll back
      * 009.xml - save - 更新成功
      * 010.xml - save - 更新时 loginName 主键冲突
      * 011.xml - save - 更新时 redis 里已经有旧缓存数据
@@ -37,7 +37,7 @@ public class UserControllerTest extends AbstractZestTest {
      *
      * @see UserController#save(UserParam)
      */
-    @ZestTest("007")
+    @ZestTest("006")
     // @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSave() {
