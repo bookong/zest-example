@@ -2,6 +2,7 @@ package com.github.bookong.example.zest.springboot;
 
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.zest.annotation.ZestSource;
+import com.github.bookong.zest.executor.MongoExecutor;
 import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodProcess;
@@ -58,7 +59,7 @@ public abstract class AbstractZestTest {
     protected DataSource                 dataSource;
 
     @Autowired
-    @ZestSource("mongo")
+    @ZestSource(value = "mongo", executorClass = MongoExecutor.class)
     protected MongoTemplate              mongoTemplate;
 
     @Autowired
@@ -131,4 +132,5 @@ public abstract class AbstractZestTest {
             assertEquals(key, expected, actual.getLong(key));
         }
     }
+
 }

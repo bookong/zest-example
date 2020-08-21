@@ -18,6 +18,8 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import java.util.stream.Stream;
 
 /**
+ * 演示针对数据库的测试
+ * 
  * @author Jiang Xu
  */
 public class UserTest extends AbstractZestTest {

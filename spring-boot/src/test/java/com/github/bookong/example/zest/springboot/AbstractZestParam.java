@@ -1,13 +1,11 @@
 package com.github.bookong.example.zest.springboot;
 
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
-import com.github.bookong.zest.annotation.ZestConnection;
 import com.github.bookong.zest.testcase.ZestParam;
 import com.github.bookong.zest.util.ZestJsonUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.ParameterizedType;
-import java.sql.Connection;
 
 /**
  * @author Jiang Xu

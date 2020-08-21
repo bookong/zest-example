@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Data xmlns="https://www.bookong.net/schema/zest/data">
+    <Description>No token parameter</Description>
+    <Sources>
+        <Source Id="mongo">
+            <Init>
+                <MongoCollection Name="remark" EntityClass="com.github.bookong.example.zest.springboot.base.entity.Remark">
+                    <Document><![CDATA[
+{
+    "userId": 1,
+    "xkcdId": 11,
+    "content": "good"
+}
+                    ]]></Document>
+                </MongoCollection>
+            </Init>
+            <Target>
+                <MongoCollection Name="remark" EntityClass="com.github.bookong.example.zest.springboot.base.entity.Remark">
+                    <Sorts>
+                        <Sort Field="userId"/>
+                        <Sort Field="xkcdId"/>
+                    </Sorts>
+                    <Document><![CDATA[
+{
+    "userId": 1,
+    "xkcdId": 11,
+    "content": "good"
+}
+                    ]]></Document>
+                    <Document><![CDATA[
+{
+    "userId": 1,
+    "xkcdId": 12,
+    "content": "very funny!"
+}
+                    ]]></Document>
+                </MongoCollection>
+            </Target>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "userId": 1,
+    "xkcdId": 12,
+    "content": "very funny!"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 0,
+    "msg": "",
+    "id": 1
+}
+        ]]></ParamField>
+    </Param>
+</Data>
