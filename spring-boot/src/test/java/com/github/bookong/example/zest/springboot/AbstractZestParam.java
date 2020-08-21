@@ -14,11 +14,9 @@ import java.sql.Connection;
  */
 public abstract class AbstractZestParam<T extends BaseResponse> implements ZestParam {
 
-    @ZestConnection("mysql")
-    public Connection conn;
-    public String     apiToken;
-    private T         expectedObj;
-    private String    apiExpected;
+    public String  apiToken;
+    private T      expectedObj;
+    private String apiExpected;
 
     protected String makeUrl(String url) {
         return StringUtils.isBlank(apiToken) ? url : String.format("%s?token=%s", url, apiToken);

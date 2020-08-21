@@ -9,9 +9,11 @@ import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserRes
 import com.github.bookong.example.zest.springboot.controller.UserController;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
+import com.github.bookong.zest.util.ZestSqlHelper;
 import net.sf.json.JSONObject;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import java.util.stream.Stream;
 
@@ -38,7 +40,7 @@ public class UserTest extends AbstractZestTest {
      *
      * @see UserController#save(UserParam)
      */
-    // @ZestTest("001")
+    // @ZestTest("006")
     @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSave() {
@@ -48,7 +50,7 @@ public class UserTest extends AbstractZestTest {
 
             assertEqual("id", expected.getId(), actual);
 
-            // System.out.println(ZestSqlHelper.query(param.conn, "select * from user"));
+            // System.out.println(ZestSqlHelper.query(DataSourceUtils.getConnection(dataSource), "select * from user"));
         });
     }
 

@@ -9,6 +9,7 @@ import com.github.bookong.example.zest.springboot.controller.UserController;
 import com.github.bookong.example.zest.springboot.service.UserService;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
+import com.github.bookong.zest.util.ZestSqlHelper;
 import net.sf.json.JSONObject;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -16,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import java.sql.SQLException;
 import java.util.stream.Stream;
@@ -48,8 +50,8 @@ public class UserSaveSpyTest extends AbstractZestTest {
      *
      * @see UserController#save(UserParam)
      */
-    @ZestTest("001")
-    // @ZestTest
+    // @ZestTest("001")
+    @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSaveSpy() {
         return zestWorker.test(this, Param.class, param -> {
@@ -60,7 +62,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
 
             assertEqual("id", expected.getId(), actual);
 
-            // System.out.println(ZestSqlHelper.query(param.conn, "select * from user"));
+            // System.out.println(ZestSqlHelper.query(DataSourceUtils.getConnection(dataSource), "select * from user"));
         });
     }
 

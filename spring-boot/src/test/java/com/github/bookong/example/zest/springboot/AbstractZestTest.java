@@ -3,14 +3,24 @@ package com.github.bookong.example.zest.springboot;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
+import de.flapdoodle.embed.mongo.config.Net;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,18 +42,51 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 @SpringBootTest
 public abstract class AbstractZestTest {
 
-    protected Logger              logger     = LoggerFactory.getLogger(getClass());
+    protected static final Logger        logger     = LoggerFactory.getLogger(AbstractZestTest.class);
 
-    protected ZestJUnit5Worker    zestWorker = new ZestJUnit5Worker();
+    protected static final MongodStarter starter    = MongodStarter.getDefaultInstance();
+    protected static final String        host       = "127.0.0.1";
+    protected static final int           port       = 27027;
+
+    protected static MongodExecutable    mongodExe;
+    protected static MongodProcess       mongod;
+
+    protected ZestJUnit5Worker           zestWorker = new ZestJUnit5Worker();
 
     @Autowired
     @ZestSource("mysql")
-    private DataSource            dataSource;
+    protected DataSource                 dataSource;
 
     @Autowired
-    private WebApplicationContext context;
+    @ZestSource("mongo")
+    protected MongoTemplate              mongoTemplate;
 
-    private MockMvc               mockMvc;
+    @Autowired
+    private WebApplicationContext        context;
+
+    private MockMvc                      mockMvc;
+
+    @BeforeAll
+    public static void setUp() throws Exception {
+        logger.info("start embed MongoDB on {}:{}...", host, port);
+        mongodExe = starter.prepare(new MongodConfigBuilder().version(Version.Main.PRODUCTION) //
+                                                             .net(new Net(host, port, Network.localhostIsIPv6())) //
+                                                             .build());
+        mongod = mongodExe.start();
+    }
+
+    @AfterAll
+    public static void tearDown() {
+        logger.info("stop embed MongoDB...");
+
+        if (mongod != null) {
+            mongod.stop();
+        }
+
+        if (mongodExe != null) {
+            mongodExe.stop();
+        }
+    }
 
     @BeforeEach
     public void setupMockMvc() throws Exception {
@@ -52,10 +95,7 @@ public abstract class AbstractZestTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    public JSONObject doPostAndBaseVerify(String url, String requestBody, BaseResponse expected) {
-        return doPostAndBaseVerify(url, requestBody, expected, false);
-    }
-
+    /** Make an http request in post method and simply verify the response content */
     public JSONObject doPostAndBaseVerify(String url, String requestBody, BaseResponse expected, boolean showResponse) {
         String responseJson = "";
         try {
