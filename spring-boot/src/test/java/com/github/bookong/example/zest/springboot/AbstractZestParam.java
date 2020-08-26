@@ -10,7 +10,7 @@ import java.lang.reflect.ParameterizedType;
 /**
  * @author Jiang Xu
  */
-public abstract class AbstractZestParam<T extends BaseResponse> implements ZestParam {
+public abstract class AbstractZestParam<T extends BaseResponse> extends ZestParam {
 
     public String  apiToken;
     private T      expectedObj;

@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Data xmlns="https://www.bookong.net/schema/zest/data">
+<Zest xmlns="https://www.bookong.net/schema/zest/data">
     <Description>Added successfully</Description>
     <Sources>
         <Source Id="mysql">
             <Init>
-                <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
-                        <Field Name="ext_info">
-                            <Null/>
-                        </Field>
-                    </Row>
-                </SqlTable>
-                <SqlTable Name="user_auth" />
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "something",
+    "nickname": "Jonathan Joester",
+    "ext_info": null,
+    "create_time": "2020-08-19"
+}
+                    ]]></Data>
+                </Table>
+                <Table Name="user_auth"/>
             </Init>
-            <Target>
-                <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
-                        <Field Name="ext_info">
-                            <Null/>
-                        </Field>
-                    </Row>
-                    <Row id="2" login_name="dio" password="900150983cd24fb0d6963f7d28e17f72" nickname="Dio Brando">
-                        <Field Name="ext_info">
-                            <Null/>
-                        </Field>
-                        <Field Name="create_time">
-                            <CurrentTime />
-                        </Field>
-                    </Row>
-                </SqlTable>
-                <SqlTable Name="user_auth" >
-                    <Row id="1" user_id="2" auth="login" />
-                </SqlTable>
-            </Target>
+            <Verify>
+                <Table Name="user">
+                    <Rules>
+                        <Rule Path="create_time">
+                            <CurrentTime/>
+                        </Rule>
+                    </Rules>
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "something",
+    "nickname": "Jonathan Joester",
+    "ext_info": null,
+    "create_time": "2020-08-19"
+}
+                    ]]></Data>
+                    <Data><![CDATA[
+{
+    "id": 2,
+    "login_name": "dio",
+    "password": "900150983cd24fb0d6963f7d28e17f72",
+    "nickname": "Dio Brando",
+    "ext_info": null
+}
+                    ]]></Data>
+                </Table>
+                <Table Name="user_auth">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "user_id": 2,
+    "auth": "login"
+}
+                    ]]></Data>
+                </Table>
+            </Verify>
         </Source>
     </Sources>
     <Param>
@@ -52,4 +74,4 @@
 }
         ]]></ParamField>
     </Param>
-</Data>
+</Zest>

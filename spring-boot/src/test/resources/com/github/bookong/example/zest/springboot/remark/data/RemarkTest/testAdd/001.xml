@@ -4,7 +4,7 @@
     <Sources>
         <Source Id="mongo">
             <Init>
-                <MongoCollection Name="remark" EntityClass="com.github.bookong.example.zest.springboot.base.entity.Remark">
+                <MongoCollection Name="remark" EntityClass="com.github.bookong.example.zest.springboot.base.entity.Remark" >
                     <Document><![CDATA[
 {
     "userId": 1,

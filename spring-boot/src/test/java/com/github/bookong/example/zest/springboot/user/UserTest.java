@@ -42,8 +42,8 @@ public class UserTest extends AbstractZestTest {
      *
      * @see UserController#save(UserParam)
      */
-    // @ZestTest("006")
-    @ZestTest
+    @ZestTest("006")
+    // @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSave() {
         return zestWorker.test(this, SaveParam.class, param -> {

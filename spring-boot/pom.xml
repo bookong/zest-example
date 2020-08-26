@@ -115,7 +115,7 @@
             <groupId>com.github.bookong</groupId>
             <artifactId>zest</artifactId>
             <version>0.2.26-SNAPSHOT</version>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
         </dependency>
 
         <dependency>

@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Data xmlns="https://www.bookong.net/schema/zest/data">
+<Zest xmlns="https://www.bookong.net/schema/zest/data">
     <Description>Parameter password is empty</Description>
     <Sources>
         <Source Id="mysql">
             <Init>
-                <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
-                        <Field Name="ext_info">
-                            <Null/>
-                        </Field>
-                    </Row>
-                </SqlTable>
-                <SqlTable Name="user_auth" />
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "something",
+    "nickname": "Jonathan Joester",
+    "ext_info": null,
+    "create_time": "2020-08-19"
+}
+                    ]]></Data>
+                </Table>
+                <Table Name="user_auth"/>
             </Init>
-            <Target>
-                <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
-                        <Field Name="ext_info">
-                            <Null/>
-                        </Field>
-                    </Row>
-                </SqlTable>
-                <SqlTable Name="user_auth" />
-            </Target>
+            <Verify>
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "something",
+    "nickname": "Jonathan Joester",
+    "ext_info": null,
+    "create_time": "2020-08-19"
+}
+                    ]]></Data>
+                </Table>
+                <Table Name="user_auth"/>
+            </Verify>
         </Source>
     </Sources>
     <Param>
@@ -41,4 +51,4 @@
 }
         ]]></ParamField>
     </Param>
-</Data>
+</Zest>
