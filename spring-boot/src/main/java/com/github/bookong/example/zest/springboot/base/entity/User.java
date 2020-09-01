@@ -12,6 +12,8 @@ public class User {
 
     private String nickname;
 
+    private String token;
+
     private String extInfo;
 
     private Date   createTime;
@@ -62,5 +64,13 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

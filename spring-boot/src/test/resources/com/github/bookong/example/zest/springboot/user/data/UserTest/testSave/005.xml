@@ -10,8 +10,9 @@
 {
     "id": 1,
     "login_name": "jojo",
-    "password": "something",
+    "password": "jojo password",
     "nickname": "Jonathan Joester",
+    "token": "jojo token",
     "ext_info": null,
     "create_time": "2020-08-19"
 }
@@ -25,8 +26,9 @@
 {
     "id": 1,
     "login_name": "jojo",
-    "password": "something",
+    "password": "jojo password",
     "nickname": "Jonathan Joester",
+    "token": "jojo token",
     "ext_info": null,
     "create_time": "2020-08-19"
 }

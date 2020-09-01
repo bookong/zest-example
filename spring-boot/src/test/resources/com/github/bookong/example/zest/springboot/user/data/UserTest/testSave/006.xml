@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Zest xmlns="https://www.bookong.net/schema/zest/data">
+<Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd">
     <Description>Added successfully</Description>
     <Sources>
         <Source Id="mysql">
@@ -11,6 +12,7 @@
     "login_name": "jojo",
     "password": "something",
     "nickname": "Jonathan Joester",
+    "token": "something",
     "ext_info": null,
     "create_time": "2020-08-19"
 }
@@ -21,6 +23,9 @@
             <Verify>
                 <Table Name="user">
                     <Rules>
+                        <Rule Field="token">
+                            <RegExp>^USER_[0-9]*$</RegExp>
+                        </Rule>
                         <Rule Field="create_time">
                             <CurrentTime/>
                         </Rule>
@@ -31,6 +36,7 @@
     "login_name": "jojo",
     "password": "something",
     "nickname": "Jonathan Joester",
+    "token": "something",
     "ext_info": null,
     "create_time": "2020-08-19"
 }
@@ -46,6 +52,11 @@
                     ]]></Data>
                 </Table>
                 <Table Name="user_auth">
+                    <Rules>
+                        <Rule Field="expiration_time">
+                            <FromCurrentTime Min="3" Max="3" Unit="day"/>
+                        </Rule>
+                    </Rules>
                     <Data><![CDATA[
 {
     "id": 1,

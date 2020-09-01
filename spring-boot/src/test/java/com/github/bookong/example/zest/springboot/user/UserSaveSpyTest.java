@@ -62,7 +62,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
 
             assertEqual("id", expected.getId(), actual);
 
-            // System.out.println(ZestSqlHelper.query(DataSourceUtils.getConnection(dataSource), "select * from user"));
+            // System.out.println(ZestSqlHelper.query(dataSource, "select * from user"));
         });
     }
 

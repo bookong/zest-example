@@ -10,6 +10,7 @@ import com.github.bookong.example.zest.springboot.base.mapper.UserMapper;
 import com.github.bookong.example.zest.springboot.conf.AppConfig;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
 import com.github.bookong.example.zest.springboot.util.JsonUtil;
+import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -51,6 +52,7 @@ public class UserService {
         try {
             if (param.getId() == null) {
                 logger.info("add user login name \"{}\"", param.getLoginName());
+                user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
                 user.setCreateTime(new Date());
                 userMapper.insert(user);
 
@@ -70,6 +72,7 @@ public class UserService {
         UserAuth userAuth = new UserAuth();
         userAuth.setUserId(user.getId());
         userAuth.setAuth("login");
+        userAuth.setExpirationTime(DateUtils.addDays(new Date(), 3));
         userAuthMapper.insert(userAuth);
     }
 

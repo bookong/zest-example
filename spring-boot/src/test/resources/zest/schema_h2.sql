@@ -4,6 +4,7 @@ CREATE TABLE `user` (
   `login_name`  varchar(32)  NOT NULL ,
   `password`    varchar(32)  NOT NULL ,
   `nickname`    varchar(64)  NOT NULL ,
+  `token`       varchar(64)  NOT NULL ,
   `ext_info`    varchar(64)           DEFAULT NULL ,
   `create_time` datetime     NOT NULL ,
   PRIMARY KEY (`id`),
@@ -12,9 +13,10 @@ CREATE TABLE `user` (
 
 DROP TABLE IF EXISTS `user_auth`;
 CREATE TABLE `user_auth` (
-  `id`          bigint       NOT NULL AUTO_INCREMENT,
-  `user_id`     bigint       NOT NULL ,
-  `auth`        varchar(32)  NOT NULL ,
+  `id`               bigint       NOT NULL AUTO_INCREMENT,
+  `user_id`          bigint       NOT NULL ,
+  `auth`             varchar(32)  NOT NULL ,
+  `expiration_time`  datetime     NOT NULL ,
   PRIMARY KEY (`id`)
 ) ;
 

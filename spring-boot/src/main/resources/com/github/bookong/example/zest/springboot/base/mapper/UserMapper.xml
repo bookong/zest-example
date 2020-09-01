@@ -6,12 +6,13 @@
         <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
         <result column="ext_info" jdbcType="VARCHAR" property="extInfo"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, login_name, password, nickname, ext_info, create_time
+        id, login_name, password, nickname, token, ext_info, create_time
     </sql>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -23,11 +24,11 @@
 
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.github.bookong.example.zest.springboot.base.entity.User" useGeneratedKeys="true">
         insert into `user` (
-            login_name, password, nickname,
+            login_name, password, nickname, token,
             ext_info, create_time
         )
         values (
-            #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+            #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR},
             #{extInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
         )
     </insert>
@@ -43,6 +44,9 @@
             </if>
             <if test="nickname != null">
                 nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                token = #{token,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}

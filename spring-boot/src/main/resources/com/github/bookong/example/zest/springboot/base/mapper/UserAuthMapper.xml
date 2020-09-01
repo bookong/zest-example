@@ -5,18 +5,19 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="auth" jdbcType="VARCHAR" property="auth"/>
+        <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_id, auth
+        id, user_id, auth, expiration_time
     </sql>
 
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.github.bookong.example.zest.springboot.base.entity.UserAuth" useGeneratedKeys="true">
         insert into `user_auth` (
-            user_id, auth
+            user_id, auth, expiration_time
         )
         values (
-            #{userId,jdbcType=BIGINT}, #{auth,jdbcType=VARCHAR}
+            #{userId,jdbcType=BIGINT}, #{auth,jdbcType=VARCHAR}, #{expirationTime,jdbcType=TIMESTAMP}
         )
     </insert>
 
