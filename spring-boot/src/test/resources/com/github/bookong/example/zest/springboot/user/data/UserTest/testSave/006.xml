@@ -10,7 +10,7 @@
 {
     "id": 1,
     "login_name": "jojo",
-    "password": "something",
+    "password": "jojo password",
     "nickname": "Jonathan Joester",
     "token": "something",
     "ext_info": null,
@@ -34,7 +34,7 @@
 {
     "id": 1,
     "login_name": "jojo",
-    "password": "something",
+    "password": "jojo password",
     "nickname": "Jonathan Joester",
     "token": "something",
     "ext_info": null,
