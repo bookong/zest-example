@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="https://www.bookong.net/schema/zest/data file://zest-0.2.26-SNAPSHOT.jar!/com/github/bookong/zest/zest-data-1.0.xsd">
+      xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd">
     <Description>No token parameter</Description>
     <Sources>
         <Source Id="mysql">

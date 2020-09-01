@@ -42,8 +42,8 @@ public class UserTest extends AbstractZestTest {
      *
      * @see UserController#save(UserParam)
      */
-    @ZestTest("006")
-    // @ZestTest
+    // @ZestTest("006")
+    @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSave() {
         return zestWorker.test(this, SaveParam.class, param -> {
@@ -52,7 +52,7 @@ public class UserTest extends AbstractZestTest {
 
             assertEqual("id", expected.getId(), actual);
 
-            // System.out.println(ZestSqlHelper.query(DataSourceUtils.getConnection(dataSource), "select * from user"));
+            System.out.println(ZestSqlHelper.query(dataSource, "select * from user"));
         });
     }
 

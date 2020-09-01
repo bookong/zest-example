@@ -21,7 +21,7 @@
             <Verify>
                 <Table Name="user">
                     <Rules>
-                        <Rule Path="create_time">
+                        <Rule Field="create_time">
                             <CurrentTime/>
                         </Rule>
                     </Rules>
