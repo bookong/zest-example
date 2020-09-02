@@ -5,7 +5,7 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.UserResponse;
-import com.github.bookong.example.zest.springboot.base.entity.User;
+import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
 import com.github.bookong.example.zest.springboot.service.UserService;

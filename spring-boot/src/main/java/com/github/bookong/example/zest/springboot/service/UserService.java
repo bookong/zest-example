@@ -2,12 +2,11 @@ package com.github.bookong.example.zest.springboot.service;
 
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInfoParam;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
-import com.github.bookong.example.zest.springboot.base.entity.User;
-import com.github.bookong.example.zest.springboot.base.entity.UserAuth;
+import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
+import com.github.bookong.example.zest.springboot.base.mybatis.entity.UserAuth;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
-import com.github.bookong.example.zest.springboot.base.mapper.UserAuthMapper;
-import com.github.bookong.example.zest.springboot.base.mapper.UserMapper;
-import com.github.bookong.example.zest.springboot.conf.AppConfig;
+import com.github.bookong.example.zest.springboot.base.mybatis.mapper.UserAuthMapper;
+import com.github.bookong.example.zest.springboot.base.mybatis.mapper.UserMapper;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
 import com.github.bookong.example.zest.springboot.util.JsonUtil;
 import org.apache.commons.lang.time.DateUtils;

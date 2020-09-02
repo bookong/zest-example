@@ -1,7 +1,7 @@
 package com.github.bookong.example.zest.springboot.base.api.resp.user;
 
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springboot.base.entity.User;
+import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package com.github.bookong.example.zest.springboot.base.mapper;
+package com.github.bookong.example.zest.springboot.base.mybatis.mapper;
 
-import com.github.bookong.example.zest.springboot.base.entity.UserAuth;
+import com.github.bookong.example.zest.springboot.base.mybatis.entity.UserAuth;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,6 @@ package com.github.bookong.example.zest.springboot.service;
 
 import com.github.bookong.example.zest.springboot.base.api.param.remark.RemarkParam;
 import com.github.bookong.example.zest.springboot.base.entity.Remark;
-import com.github.bookong.example.zest.springboot.base.entity.User;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.base.repository.RemarkRepository;
 import com.github.bookong.example.zest.springboot.exception.ApiException;

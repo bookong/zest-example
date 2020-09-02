@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.base.entity;
+package com.github.bookong.example.zest.springboot.base.mybatis.entity;
 
 import java.util.Date;
 
