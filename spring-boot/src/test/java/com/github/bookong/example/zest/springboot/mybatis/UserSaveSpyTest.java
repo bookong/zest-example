@@ -1,11 +1,11 @@
-package com.github.bookong.example.zest.springboot.user;
+package com.github.bookong.example.zest.springboot.mybatis;
 
 import com.github.bookong.example.zest.springboot.AbstractZestParam;
 import com.github.bookong.example.zest.springboot.AbstractZestTest;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
-import com.github.bookong.example.zest.springboot.controller.UserController;
+import com.github.bookong.example.zest.springboot.controller.MyBatisUserController;
 import com.github.bookong.example.zest.springboot.service.UserService;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
@@ -36,7 +36,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
 
     @InjectMocks
     @Autowired
-    private UserController userController;
+    private MyBatisUserController userController;
 
     /**
      * 演示针对 /user/save 接口测试时，发生各种数据访问异常的情况
@@ -45,7 +45,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
      * 001.xml - save - An exception occurred when inserting user_auth table data, causing the transaction to roll back
      * </pre>
      *
-     * @see UserController#save(UserParam)
+     * @see MyBatisUserController#save(UserParam)
      */
     // @ZestTest("001")
     @ZestTest
@@ -78,7 +78,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
         public boolean   errorWhenInsertUserAuth = false;
 
         public String makeUrl() {
-            return makeUrl("/user/save");
+            return makeUrl("/mybatis/user/save");
         }
     }
 }

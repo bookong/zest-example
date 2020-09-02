@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
  * @author jiangxu
  */
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/mybatis/user")
+public class MyBatisUserController {
 
     @Autowired
     private UserService userService;

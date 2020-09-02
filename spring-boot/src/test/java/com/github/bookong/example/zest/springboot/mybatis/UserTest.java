@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.user;
+package com.github.bookong.example.zest.springboot.mybatis;
 
 import com.github.bookong.example.zest.springboot.AbstractZestParam;
 import com.github.bookong.example.zest.springboot.AbstractZestTest;
@@ -6,14 +6,12 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInf
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
-import com.github.bookong.example.zest.springboot.controller.UserController;
+import com.github.bookong.example.zest.springboot.controller.MyBatisUserController;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
-import com.github.bookong.zest.util.ZestSqlHelper;
 import net.sf.json.JSONObject;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import java.util.stream.Stream;
 
@@ -39,7 +37,7 @@ public class UserTest extends AbstractZestTest {
      * 009.xml - Parameter loginName unique index conflict when updating
      * </pre>
      *
-     * @see UserController#save(UserParam)
+     * @see MyBatisUserController#save(UserParam)
      */
     // @ZestTest("009")
     @ZestTest
@@ -63,7 +61,7 @@ public class UserTest extends AbstractZestTest {
      * 001.xml - Update completed
      * </pre>
      *
-     * @see UserController#updateExtInfo(Long, UserExtInfoParam)
+     * @see MyBatisUserController#updateExtInfo(Long, UserExtInfoParam)
      */
     // @ZestTest("001")
     @ZestTest
@@ -80,7 +78,7 @@ public class UserTest extends AbstractZestTest {
         public UserParam apiParam;
 
         public String makeUrl() {
-            return makeUrl("/user/save");
+            return makeUrl("/mybatis/user/save");
         }
     }
 
@@ -91,7 +89,7 @@ public class UserTest extends AbstractZestTest {
         public UserExtInfoParam apiParam;
 
         public String makeUrl() {
-            return makeUrl(String.format("/user/%d/ext-info-update", userId));
+            return makeUrl(String.format("/mybatis/user/%d/ext-info-update", userId));
         }
     }
 
