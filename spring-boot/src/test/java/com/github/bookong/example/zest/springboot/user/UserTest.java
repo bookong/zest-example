@@ -35,14 +35,13 @@ public class UserTest extends AbstractZestTest {
      * 005.xml - Parameter nickname is empty
      * 006.xml - Added successfully
      * 007.xml - Parameter loginName unique index conflict when adding
-     * TODO 009.xml  - 更新成功
-     * TODO 010.xml  - 更新时 loginName 主键冲突
-     * TODO 011.xml  - 更新时 redis 里已经有旧缓存数据
+     * 008.xml - Update completed
+     * 009.xml - Parameter loginName unique index conflict when updating
      * </pre>
      *
      * @see UserController#save(UserParam)
      */
-    // @ZestTest("006")
+    // @ZestTest("009")
     @ZestTest
     @TestFactory
     public Stream<DynamicTest> testSave() {
