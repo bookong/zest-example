@@ -6,17 +6,7 @@
         <Source Id="mysql">
             <Init>
                 <Table Name="user">
-                    <Data><![CDATA[
-{
-    "id": 1,
-    "login_name": "jojo",
-    "password": "jojo password",
-    "nickname": "Jonathan Joester",
-    "token": "something",
-    "ext_info": null,
-    "create_time": "2020-08-19"
-}
-                    ]]></Data>
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "something", "nickname": "Jonathan Joester", "token": "something", "ext_info": null, "create_time": "2020-08-19" }</Data>
                 </Table>
                 <Table Name="user_auth"/>
             </Init>
@@ -30,26 +20,8 @@
                             <CurrentTime/>
                         </Rule>
                     </Rules>
-                    <Data><![CDATA[
-{
-    "id": 1,
-    "login_name": "jojo",
-    "password": "jojo password",
-    "nickname": "Jonathan Joester",
-    "token": "something",
-    "ext_info": null,
-    "create_time": "2020-08-19"
-}
-                    ]]></Data>
-                    <Data><![CDATA[
-{
-    "id": 2,
-    "login_name": "dio",
-    "password": "900150983cd24fb0d6963f7d28e17f72",
-    "nickname": "Dio Brando",
-    "ext_info": null
-}
-                    ]]></Data>
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "something", "nickname": "Jonathan Joester", "token": "something", "ext_info": null, "create_time": "2020-08-19" }</Data>
+                    <Data>{ "id": 2, "login_name": "dio", "password": "900150983cd24fb0d6963f7d28e17f72", "nickname": "Dio Brando", "ext_info": null }</Data>
                 </Table>
                 <Table Name="user_auth">
                     <Rules>
@@ -57,13 +29,7 @@
                             <FromCurrentTime Min="3" Max="3" Unit="day"/>
                         </Rule>
                     </Rules>
-                    <Data><![CDATA[
-{
-    "id": 1,
-    "user_id": 2,
-    "auth": "login"
-}
-                    ]]></Data>
+                    <Data>{ "id": 1, "user_id": 2, "auth": "login" }</Data>
                 </Table>
             </Verify>
         </Source>
