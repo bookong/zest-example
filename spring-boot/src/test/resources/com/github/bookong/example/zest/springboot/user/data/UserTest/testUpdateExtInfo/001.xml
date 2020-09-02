@@ -5,23 +5,35 @@
     <Sources>
         <Source Id="mysql">
             <Init>
-                <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19" >
-                        <Field Name="ext_info">
-                            <Value>{"key1":"value1"}</Value>
-                        </Field>
-                    </Row>
-                </SqlTable>
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "jojo password",
+    "nickname": "Jonathan Joester",
+    "token": "jojo token",
+    "ext_info": "{\"key1\":\"value1\"}",
+    "create_time": "2020-08-19"
+}
+                    ]]></Data>
+                </Table>
             </Init>
-            <Target>
-                <SqlTable Name="user">
-                    <Row id="1" login_name="jojo" password="something" nickname="Jonathan Joester" create_time="2020-08-19">
-                        <Field Name="ext_info">
-                            <Value>{"key1":"value1","key2":"value2"}</Value>
-                        </Field>
-                    </Row>
-                </SqlTable>
-            </Target>
+            <Verify>
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "jojo password",
+    "nickname": "Jonathan Joester",
+    "token": "jojo token",
+    "ext_info": "{\"key1\":\"value1\",\"key2\":\"value2\"}",
+    "create_time": "2020-08-19"
+}
+                    ]]></Data>
+                </Table>
+            </Verify>
         </Source>
     </Sources>
     <Param>

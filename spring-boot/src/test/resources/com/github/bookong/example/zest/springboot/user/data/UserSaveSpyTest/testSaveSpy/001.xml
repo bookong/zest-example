@@ -5,13 +5,13 @@
     <Sources>
         <Source Id="mysql">
             <Init>
-                <SqlTable Name="user" />
-                <SqlTable Name="user_auth"/>
+                <Table Name="user" />
+                <Table Name="user_auth"/>
             </Init>
-            <Target>
-                <SqlTable Name="user" />
-                <SqlTable Name="user_auth"/>
-            </Target>
+            <Verify>
+                <Table Name="user" />
+                <Table Name="user_auth"/>
+            </Verify>
         </Source>
     </Sources>
     <Param>

@@ -43,7 +43,6 @@ public class UserSaveSpyTest extends AbstractZestTest {
      *
      * <pre>
      * 001.xml - save - An exception occurred when inserting user_auth table data, causing the transaction to roll back
-     * 002.xml - save - 更新时 redis 时发送连接异常
      * </pre>
      *
      * @see UserController#save(UserParam)
@@ -59,8 +58,6 @@ public class UserSaveSpyTest extends AbstractZestTest {
             JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
 
             assertEqual("id", expected.getId(), actual);
-
-            // System.out.println(ZestSqlHelper.query(dataSource, "select * from user"));
         });
     }
 
