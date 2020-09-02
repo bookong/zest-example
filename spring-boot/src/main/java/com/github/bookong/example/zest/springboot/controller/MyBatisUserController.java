@@ -8,7 +8,7 @@ import com.github.bookong.example.zest.springboot.base.api.resp.user.UserRespons
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
-import com.github.bookong.example.zest.springboot.service.UserService;
+import com.github.bookong.example.zest.springboot.service.MybatisUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class MyBatisUserController {
 
     @Autowired
-    private UserService userService;
+    private MybatisUserService mybatisUserService;
 
     /**
      * 新增或修改一个用户（演示对数据库新增和修改）
@@ -30,7 +30,7 @@ public class MyBatisUserController {
     @PostMapping("/save")
     @ResponseBody
     public SaveUserResponse save(@Validated @RequestBody UserParam param) {
-        User user = userService.save(param);
+        User user = mybatisUserService.save(param);
         return new SaveUserResponse(user.getId());
     }
 
@@ -43,7 +43,7 @@ public class MyBatisUserController {
         if (userId == null) {
             throw new ApiException(ApiStatus.PARAM_ERROR, "userId is null");
         }
-        userService.updateExtInfo(userId, param);
+        mybatisUserService.updateExtInfo(userId, param);
         return BaseResponse.OK;
     }
 
@@ -56,7 +56,7 @@ public class MyBatisUserController {
         if (userId == null) {
             throw new ApiException(ApiStatus.PARAM_ERROR, "userId is null");
         }
-        return new UserResponse(userService.get(userId));
+        return new UserResponse(mybatisUserService.get(userId));
     }
 
 }

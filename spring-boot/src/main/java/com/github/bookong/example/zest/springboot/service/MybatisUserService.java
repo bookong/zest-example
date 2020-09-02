@@ -29,9 +29,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RedisHash
 @Service
-public class UserService {
-
-    private Logger                        logger = LoggerFactory.getLogger(getClass());
+public class MybatisUserService extends AbstractService {
 
     @Autowired
     private UserMapper                    userMapper;
@@ -119,7 +117,4 @@ public class UserService {
         userMapper.updateExtInfo(userId, param.getKey(), param.getValue());
     }
 
-    private String convertPassword(String original) {
-        return DigestUtils.md5DigestAsHex(original.getBytes());
-    }
 }

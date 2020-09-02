@@ -6,7 +6,7 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.controller.MyBatisUserController;
-import com.github.bookong.example.zest.springboot.service.UserService;
+import com.github.bookong.example.zest.springboot.service.MybatisUserService;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
 import net.sf.json.JSONObject;
@@ -32,7 +32,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
 
     @SpyBean
     @Autowired
-    private UserService    userService;
+    private MybatisUserService userService;
 
     @InjectMocks
     @Autowired
