@@ -1,5 +1,6 @@
 package com.github.bookong.example.zest.springboot.base.mongo.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,7 +13,8 @@ import java.util.Date;
 @Document(collection = "user")
 public class SimpleUser implements Serializable {
 
-    private Long   id;
+    @Id
+    private String id;
 
     @Indexed(unique = true)
     private String loginName;
@@ -23,16 +25,14 @@ public class SimpleUser implements Serializable {
 
     private String token;
 
-    private String extInfo;
-
     @Indexed
     private Date   createTime;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,14 +66,6 @@ public class SimpleUser implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public String getExtInfo() {
-        return extInfo;
-    }
-
-    public void setExtInfo(String extInfo) {
-        this.extInfo = extInfo;
     }
 
     public Date getCreateTime() {

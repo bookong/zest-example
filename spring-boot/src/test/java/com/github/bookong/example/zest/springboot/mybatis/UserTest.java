@@ -16,7 +16,7 @@ import org.junit.jupiter.api.TestFactory;
 import java.util.stream.Stream;
 
 /**
- * 演示针对数据库的测试
+ * 演示针对 SQL 数据库的测试
  * 
  * @author Jiang Xu
  */

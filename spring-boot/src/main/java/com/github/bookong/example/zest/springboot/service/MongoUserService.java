@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author Jiang Xu
  */
@@ -16,13 +18,15 @@ public class MongoUserService extends AbstractService {
     @Autowired
     private SimpleUserRepository simpleUserRepository;
 
-    public SimpleUser simpleSave(UserParam param) {
+    public SimpleUser simpleAdd(UserParam param) {
+        logger.info("add user login name \"{}\"", param.getLoginName());
         SimpleUser user = new SimpleUser();
         BeanUtils.copyProperties(param, user);
         user.setPassword(convertPassword(param.getPassword()));
+        user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
+        user.setCreateTime(new Date());
 
         simpleUserRepository.insert(user);
-
         return user;
     }
 }

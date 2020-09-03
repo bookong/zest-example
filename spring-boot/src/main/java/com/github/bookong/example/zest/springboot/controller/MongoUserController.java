@@ -1,6 +1,7 @@
 package com.github.bookong.example.zest.springboot.controller;
 
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
+import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
 import com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser;
 import com.github.bookong.example.zest.springboot.base.mongo.repository.SimpleUserRepository;
@@ -23,10 +24,10 @@ public class MongoUserController {
     @Autowired
     private MongoUserService mongoUserService;
 
-    @PostMapping("/simple/save")
+    @PostMapping("/simple/add")
     @ResponseBody
-    public SaveUserResponse simpleSave(@Validated @RequestBody UserParam param) {
-        SimpleUser user = mongoUserService.simpleSave(param);
-        return new SaveUserResponse(user.getId());
+    public BaseResponse simpleAdd(@Validated @RequestBody UserParam param) {
+        mongoUserService.simpleAdd(param);
+        return BaseResponse.OK;
     }
 }
