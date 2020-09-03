@@ -3,7 +3,7 @@ package com.github.bookong.example.zest.springboot.mybatis;
 import com.github.bookong.example.zest.springboot.AbstractZestParam;
 import com.github.bookong.example.zest.springboot.AbstractZestTest;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
-import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.controller.MyBatisUserController;
 import com.github.bookong.example.zest.springboot.service.MybatisUserService;
@@ -54,7 +54,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
         return zestWorker.test(this, Param.class, param -> {
             mockBefore(param);
 
-            SaveUserResponse expected = param.getExpected();
+            AddUserResponse expected = param.getExpected();
             JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
 
             assertEqual("id", expected.getId(), actual);
@@ -72,7 +72,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
         }
     }
 
-    public static class Param extends AbstractZestParam<SaveUserResponse> {
+    public static class Param extends AbstractZestParam<AddUserResponse> {
 
         public UserParam apiParam;
 

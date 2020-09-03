@@ -5,15 +5,15 @@ import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 /**
  * @author Jiang Xu
  */
-public class SaveUserResponse extends BaseResponse {
+public class AddUserResponse extends BaseResponse {
 
     private Long id;
 
-    public SaveUserResponse(){
+    public AddUserResponse(){
         super();
     }
 
-    public SaveUserResponse(Long id){
+    public AddUserResponse(Long id){
         super();
         this.id = id;
     }

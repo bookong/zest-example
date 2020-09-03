@@ -2,9 +2,6 @@ package com.github.bookong.example.zest.springboot.controller;
 
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
-import com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser;
-import com.github.bookong.example.zest.springboot.base.mongo.repository.SimpleUserRepository;
 import com.github.bookong.example.zest.springboot.service.MongoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

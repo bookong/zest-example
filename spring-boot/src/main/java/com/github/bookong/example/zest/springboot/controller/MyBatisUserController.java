@@ -3,7 +3,7 @@ package com.github.bookong.example.zest.springboot.controller;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInfoParam;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.UserResponse;
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
@@ -25,13 +25,13 @@ public class MyBatisUserController {
     private MybatisUserService mybatisUserService;
 
     /**
-     * 新增或修改一个用户（演示对数据库新增和修改）
+     * 新增一个用户（演示对数据库新增操作）
      */
-    @PostMapping("/save")
+    @PostMapping("/add")
     @ResponseBody
-    public SaveUserResponse save(@Validated @RequestBody UserParam param) {
-        User user = mybatisUserService.save(param);
-        return new SaveUserResponse(user.getId());
+    public AddUserResponse add(@Validated @RequestBody UserParam param) {
+        User user = mybatisUserService.add(param);
+        return new AddUserResponse(user.getId());
     }
 
     /**

@@ -4,12 +4,11 @@ import com.github.bookong.example.zest.springboot.AbstractZestParam;
 import com.github.bookong.example.zest.springboot.AbstractZestTest;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
 import com.github.bookong.example.zest.springboot.controller.MongoUserController;
 import com.github.bookong.example.zest.springboot.zest.ComplexMongoExecutor;
 import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.annotation.ZestTest;
-import com.github.bookong.zest.executor.MongoExecutor;
 import com.github.bookong.zest.util.ZestJsonUtil;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -48,7 +47,7 @@ public class ComplexUserTest extends AbstractZestTest {
         });
     }
 
-    public static class ComplexAddParam extends AbstractZestParam<SaveUserResponse> {
+    public static class ComplexAddParam extends AbstractZestParam<AddUserResponse> {
 
         public UserParam apiParam;
 

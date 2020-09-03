@@ -7,8 +7,6 @@ import javax.validation.constraints.NotEmpty;
  */
 public class UserParam {
 
-    private Long   id;
-
     @NotEmpty(message = "loginName cannot be empty")
     private String loginName;
 
@@ -17,14 +15,6 @@ public class UserParam {
 
     @NotEmpty(message = "nickname cannot be empty")
     private String nickname;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLoginName() {
         return loginName;

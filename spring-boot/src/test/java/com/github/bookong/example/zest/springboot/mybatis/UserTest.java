@@ -5,7 +5,7 @@ import com.github.bookong.example.zest.springboot.AbstractZestTest;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInfoParam;
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springboot.base.api.resp.user.SaveUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
 import com.github.bookong.example.zest.springboot.controller.MyBatisUserController;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
@@ -33,18 +33,16 @@ public class UserTest extends AbstractZestTest {
      * 005.xml - Parameter nickname is empty
      * 006.xml - Added successfully
      * 007.xml - Parameter loginName unique index conflict when adding
-     * 008.xml - Update completed
-     * 009.xml - Parameter loginName unique index conflict when updating
      * </pre>
      *
-     * @see MyBatisUserController#save(UserParam)
+     * @see MyBatisUserController#add(UserParam)
      */
     // @ZestTest("009")
     @ZestTest
     @TestFactory
-    public Stream<DynamicTest> testSave() {
+    public Stream<DynamicTest> testAdd() {
         return zestWorker.test(this, SaveParam.class, param -> {
-            SaveUserResponse expected = param.getExpected();
+            AddUserResponse expected = param.getExpected();
             JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
 
             assertEqual("id", expected.getId(), actual);
@@ -73,12 +71,12 @@ public class UserTest extends AbstractZestTest {
         });
     }
 
-    public static class SaveParam extends AbstractZestParam<SaveUserResponse> {
+    public static class SaveParam extends AbstractZestParam<AddUserResponse> {
 
         public UserParam apiParam;
 
         public String makeUrl() {
-            return makeUrl("/mybatis/user/save");
+            return makeUrl("/mybatis/user/add");
         }
     }
 

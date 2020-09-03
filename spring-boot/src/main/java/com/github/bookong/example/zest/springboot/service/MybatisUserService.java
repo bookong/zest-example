@@ -41,27 +41,22 @@ public class MybatisUserService extends AbstractService {
     private RedisTemplate<String, String> redisTemplate;
 
     @Transactional(rollbackFor = Exception.class)
-    public User save(UserParam param) {
+    public User add(UserParam param) {
+        logger.info("add user login name \"{}\"", param.getLoginName());
+
         User user = new User();
         BeanUtils.copyProperties(param, user);
         user.setPassword(convertPassword(param.getPassword()));
+        user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
+        user.setCreateTime(new Date());
 
         try {
-            if (param.getId() == null) {
-                logger.info("add user login name \"{}\"", param.getLoginName());
-                user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
-                user.setCreateTime(new Date());
-                userMapper.insert(user);
-
-                addUserAuth(user);
-            } else {
-                logger.info("update user:{} ", param.getId());
-                userMapper.updateByPrimaryKeySelective(user);
-            }
+            userMapper.insert(user);
         } catch (DuplicateKeyException e) {
             throw new ApiException(ApiStatus.PARAM_ERROR, "data conflict");
         }
 
+        addUserAuth(user);
         return user;
     }
 
