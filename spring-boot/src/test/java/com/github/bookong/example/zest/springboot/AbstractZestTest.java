@@ -122,10 +122,34 @@ public abstract class AbstractZestTest {
         }
     }
 
+    public JSONObject doGetAndBaseVerify(String url, BaseResponse expected, boolean showResponse) {
+        String responseJson = "";
+        try {
+            MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+            MvcResult mvcResult = mockMvc.perform(request).andReturn();
+            responseJson = mvcResult.getResponse().getContentAsString();
+            assertEquals("http status != 200", HttpStatus.SC_OK, mvcResult.getResponse().getStatus());
+
+            JSONObject actual = JSONObject.fromObject(responseJson);
+            if (showResponse) {
+                logger.info("response json:\n{}", actual.toString(4));
+            }
+
+            assertEquals("code", expected.getCode(), actual.getInt("code"));
+            assertEquals("msg", expected.getMsg(), actual.getString("msg"));
+            return actual;
+
+        } catch (AssertionError e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(responseJson, e);
+        }
+    }
+
     /**
      * 这部分没有写在 zest 代码中是因为 JSONObject 的某些行为（例如验证是否为空对象）在不同版本不一致
      */
-    protected void assertEqual(String key, Long expected, JSONObject actual) {
+    protected void doAssertEqual(String key, Long expected, JSONObject actual) {
         if (expected == null) {
             assertTrue(actual.get(key) == null, String.format("%s must null", key));
         } else {

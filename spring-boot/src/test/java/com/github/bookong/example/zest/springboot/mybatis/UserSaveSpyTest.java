@@ -57,7 +57,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
             AddUserResponse expected = param.getExpected();
             JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
 
-            assertEqual("id", expected.getId(), actual);
+            doAssertEqual("id", expected.getId(), actual);
         });
     }
 

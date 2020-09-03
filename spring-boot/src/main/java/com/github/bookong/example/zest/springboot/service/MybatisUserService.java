@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Jiang Xu
@@ -66,4 +67,8 @@ public class MybatisUserService extends AbstractService {
         userMapper.updateExtInfo(userId, param.getKey(), param.getValue());
     }
 
+    public List<User> findSimpleUserOneDay(){
+        Date createTimeStart = DateUtils.addDays(new Date(), -1);
+        return userMapper.findByCreateTimeRange(createTimeStart);
+    }
 }

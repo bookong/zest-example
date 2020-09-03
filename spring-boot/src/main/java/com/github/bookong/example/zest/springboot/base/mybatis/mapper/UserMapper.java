@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author Jiang Xu
  */
@@ -16,7 +19,7 @@ public interface UserMapper {
 
     int insert(User record);
 
-    int updateByPrimaryKeySelective(User record);
-
     int updateExtInfo(@Param("userId") Long userId, @Param("key") String key, @Param("value") String value);
+
+    List<User> findByCreateTimeRange(@Param("createTimeStart") Date createTimeStart);
 }

@@ -6,24 +6,31 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInf
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.UserOneDayResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.UserResponse;
 import com.github.bookong.example.zest.springboot.controller.MyBatisUserController;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
+import java.util.List;
 import java.util.stream.Stream;
 
+import static org.springframework.test.util.AssertionErrors.assertEquals;
+
 /**
- * 演示针对 SQL 数据库的测试
+ * 演示针对 MySQL 数据库的测试
  * 
  * @author Jiang Xu
  */
 public class UserTest extends AbstractZestTest {
 
     /**
-     * 演示针对 /user/save 接口比较全面的测试，但不模拟出现异常情况，模拟异常使用 {@link UserSaveSpyTest#testSaveSpy()} 来测试
+     * 演示针对 /user/save 接口比较全面的测试，但不模拟出现异常情况<br>
+     * 模拟异常使用 {@link UserSaveSpyTest#testAddSpy()} 来测试
      *
      * <pre>
      * 001.xml - No token parameter
@@ -45,15 +52,16 @@ public class UserTest extends AbstractZestTest {
             AddUserResponse expected = param.getExpected();
             JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
 
-            assertEqual("id", expected.getId(), actual);
+            doAssertEqual("id", expected.getId(), actual);
 
             // System.out.println(ZestSqlHelper.query(dataSource, "select * from user"));
         });
     }
 
     /**
-     * 演示自定义 H2 数据库函数，来模拟 MySQL 的函数 json_set<br>
-     * 虽然新版本的 H2 已经支持了 json 类型字段，但自定义函数还是过于复杂，我倾向于将字段类型改为字符串进行测试
+     * 通过自定义 H2 数据库函数的方式来模拟 MySQL 的函数 json_set<br>
+     * 虽然新版本的 H2 已经支持了 json 类型字段，但自定义函数过于复杂<br>
+     * 我倾向于将字段类型改为字符串进行测试。自定义 H2 函数是在 schema_h2.sql 文件里通过 ALIAS 设定的
      * 
      * <pre>
      * 001.xml - Update completed
@@ -68,6 +76,36 @@ public class UserTest extends AbstractZestTest {
         return zestWorker.test(this, UpdateExtInfoParam.class, param -> {
             BaseResponse expected = param.getExpected();
             doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
+        });
+    }
+
+    /**
+     * 通过在测试用例文件（xml文件）中定义 CurrentTime 属性，来实现与当前时间有关的查询
+     * 
+     * <pre>
+     * 001.xml - By defining the CurrentTime property, the query related to the current time is realized
+     * </pre>
+     * 
+     * @see MyBatisUserController#findUserOneDay()
+     */
+    // @ZestTest("001")
+    @ZestTest
+    @TestFactory
+    public Stream<DynamicTest> testFindUserOneDay() {
+        return zestWorker.test(this, FindUserOneDayParam.class, param -> {
+            UserOneDayResponse expected = param.getExpected();
+            JSONObject actual = doGetAndBaseVerify(param.makeUrl(), expected, true);
+
+            List<UserResponse> expectedUsers = expected.getUsers();
+            JSONArray actualUsers = actual.getJSONArray("users");
+
+            assertEquals("users.size()", expectedUsers.size(), actualUsers.size());
+            for (int i = 0; i < expectedUsers.size(); i++) {
+                String msg = String.format("users[%d]", i);
+                UserResponse expectedUser = expectedUsers.get(i);
+                JSONObject actualUser = actualUsers.getJSONObject(i);
+                assertEquals(msg.concat("nickname"), expectedUser.getNickname(), actualUser.getString("nickname"));
+            }
         });
     }
 
@@ -91,4 +129,10 @@ public class UserTest extends AbstractZestTest {
         }
     }
 
+    public static class FindUserOneDayParam extends AbstractZestParam<UserOneDayResponse> {
+
+        public String makeUrl() {
+            return makeUrl("/mybatis/user/one-day");
+        }
+    }
 }

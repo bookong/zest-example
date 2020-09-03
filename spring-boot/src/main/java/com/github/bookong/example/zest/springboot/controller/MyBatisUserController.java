@@ -4,6 +4,7 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInf
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
+import com.github.bookong.example.zest.springboot.base.api.resp.user.UserOneDayResponse;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
@@ -14,6 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 这里演示对 MySQL 数据库进行存取的接口
+ * 
  * @author jiangxu
  */
 @Controller
@@ -24,7 +27,7 @@ public class MyBatisUserController {
     private MybatisUserService mybatisUserService;
 
     /**
-     * 新增一个用户（演示对数据库新增操作）
+     * 演示对数据库新增操作
      */
     @PostMapping("/add")
     @ResponseBody
@@ -34,7 +37,7 @@ public class MyBatisUserController {
     }
 
     /**
-     * 更新用户的扩展信息（演示更新 json 类型字段）
+     * 演示更新 json 类型字段
      */
     @PostMapping("/{userId}/ext-info-update")
     @ResponseBody
@@ -46,4 +49,12 @@ public class MyBatisUserController {
         return BaseResponse.OK;
     }
 
+    /**
+     * 演示查询一个与当前时间条件有关的 SQL
+     */
+    @GetMapping("/one-day")
+    @ResponseBody
+    public UserOneDayResponse findUserOneDay() {
+        return new UserOneDayResponse(mybatisUserService.findSimpleUserOneDay());
+    }
 }
