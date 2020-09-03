@@ -2,14 +2,19 @@ package com.github.bookong.example.zest.springboot.service;
 
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
+import com.github.bookong.example.zest.springboot.base.mongo.entity.Auth;
+import com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser;
 import com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser;
+import com.github.bookong.example.zest.springboot.base.mongo.repository.ComplexUserRepository;
 import com.github.bookong.example.zest.springboot.base.mongo.repository.SimpleUserRepository;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,10 +24,13 @@ import java.util.Date;
 public class MongoUserService extends AbstractService {
 
     @Autowired
-    private SimpleUserRepository simpleUserRepository;
+    private SimpleUserRepository  simpleUserRepository;
 
-    public SimpleUser simpleAdd(UserParam param) {
-        logger.info("add user login name \"{}\"", param.getLoginName());
+    @Autowired
+    private ComplexUserRepository complexUserRepository;
+
+    public void simpleAdd(UserParam param) {
+        logger.info("add simple user login name \"{}\"", param.getLoginName());
         SimpleUser user = new SimpleUser();
         BeanUtils.copyProperties(param, user);
         user.setPassword(convertPassword(param.getPassword()));
@@ -31,9 +39,25 @@ public class MongoUserService extends AbstractService {
 
         try {
             simpleUserRepository.insert(user);
-            return user;
         } catch (DuplicateKeyException e) {
             throw new ApiException(ApiStatus.PARAM_ERROR, "data conflict");
         }
+    }
+
+    public void complexAdd(UserParam param) {
+        logger.info("add complex user login name \"{}\"", param.getLoginName());
+        ComplexUser user = new ComplexUser();
+        BeanUtils.copyProperties(param, user);
+        user.setPassword(convertPassword(param.getPassword()));
+        user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
+        user.setCreateTime(new Date());
+        user.setAuthList(new ArrayList<>());
+
+        Auth auth = new Auth();
+        user.getAuthList().add(auth);
+        auth.setAuth("login");
+        auth.setExpirationTime(DateUtils.addDays(new Date(), 3));
+
+        complexUserRepository.insert(user);
     }
 }

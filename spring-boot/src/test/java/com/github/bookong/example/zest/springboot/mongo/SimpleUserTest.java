@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 public class SimpleUserTest extends AbstractZestTest {
 
     /**
-     * 演示 MongoDB 写入简单数据的例子
+     * 演示 MongoDB 写入简单数据的例子，80% 以上的业务场景都是简单的数据
      * 
      * <pre>
      * 001.xml - Added successfully

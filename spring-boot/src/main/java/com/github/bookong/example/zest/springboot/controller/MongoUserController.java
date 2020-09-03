@@ -30,4 +30,11 @@ public class MongoUserController {
         mongoUserService.simpleAdd(param);
         return BaseResponse.OK;
     }
+
+    @PostMapping("/complex/add")
+    @ResponseBody
+    public BaseResponse complexAdd(@Validated @RequestBody UserParam param) {
+        mongoUserService.complexAdd(param);
+        return BaseResponse.OK;
+    }
 }
