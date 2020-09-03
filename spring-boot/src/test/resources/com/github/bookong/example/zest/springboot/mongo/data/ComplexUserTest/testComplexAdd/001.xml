@@ -20,7 +20,7 @@
                 </Table>
             </Init>
             <Verify>
-                <Table Name="user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser">
+                <Table Name="user" >
                     <Data><![CDATA[
 {
     "id": "1",

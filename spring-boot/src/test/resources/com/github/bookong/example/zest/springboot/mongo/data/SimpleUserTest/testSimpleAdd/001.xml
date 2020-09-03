@@ -10,7 +10,7 @@
                 </Table>
             </Init>
             <Verify>
-                <Table Name="user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser">
+                <Table Name="user">
                     <Rules>
                         <Rule Field="id">
                             <RegExp>^[0-9a-z]*$</RegExp>
