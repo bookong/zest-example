@@ -42,15 +42,15 @@ public class UserSaveSpyTest extends AbstractZestTest {
      * 演示针对 /user/save 接口测试时，发生各种数据访问异常的情况
      *
      * <pre>
-     * 001.xml - save - An exception occurred when inserting user_auth table data, causing the transaction to roll back
+     * 001.xml - An exception occurred when inserting user_auth table data, causing the transaction to roll back
      * </pre>
      *
-     * @see MyBatisUserController#save(UserParam)
+     * @see MyBatisUserController#add(UserParam)
      */
     // @ZestTest("001")
     @ZestTest
     @TestFactory
-    public Stream<DynamicTest> testSaveSpy() {
+    public Stream<DynamicTest> testAddSpy() {
         return zestWorker.test(this, Param.class, param -> {
             mockBefore(param);
 
@@ -79,7 +79,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
         public boolean   errorWhenInsertUserAuth = false;
 
         public String makeUrl() {
-            return makeUrl("/mybatis/user/save");
+            return makeUrl("/mybatis/user/add");
         }
     }
 }
