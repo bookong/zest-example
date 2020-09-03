@@ -20,9 +20,9 @@ public class SimpleUserRepositoryImpl implements SimpleUserRepositoryCustom {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<SimpleUser> findUserOneDay() {
+    public List<SimpleUser> findByCreateTimeRange(Date createTimeStart) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("createTime").gte(DateUtils.addDays(new Date(), -1)));
+        query.addCriteria(Criteria.where("createTime").gte(createTimeStart));
 
         return mongoTemplate.find(query, SimpleUser.class);
     }

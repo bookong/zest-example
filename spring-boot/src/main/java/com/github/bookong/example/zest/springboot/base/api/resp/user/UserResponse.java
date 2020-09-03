@@ -4,6 +4,8 @@ import com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser;
 import com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser;
 import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 
+import java.text.SimpleDateFormat;
+
 /**
  * @author Jiang Xu
  */

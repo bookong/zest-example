@@ -30,7 +30,7 @@ public class MongoUserController {
     /**
      * 获取最近一天新增用户（演示在 MongoDB 中做一个与当前时间有关的查询）
      */
-    @GetMapping("/simple/user/one-day")
+    @GetMapping("/simple/one-day")
     @ResponseBody
     public UserOneDayResponse findSimpleUserOneDay() {
         return new UserOneDayResponse(mongoUserService.findSimpleUserOneDay());
@@ -43,7 +43,7 @@ public class MongoUserController {
         return BaseResponse.OK;
     }
 
-    @GetMapping("/complex/user/one-day")
+    @GetMapping("/complex/one-day")
     @ResponseBody
     public UserOneDayResponse findComplexUserOneDay() {
         return new UserOneDayResponse(mongoUserService.findComplexUserOneDay());

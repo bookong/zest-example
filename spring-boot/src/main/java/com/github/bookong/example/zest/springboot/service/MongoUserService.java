@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +64,8 @@ public class MongoUserService extends AbstractService {
     }
 
     public List<SimpleUser> findSimpleUserOneDay() {
-        return simpleUserRepository.findUserOneDay();
+        Date createTimeStart = DateUtils.addDays(new Date(), -1);
+        return simpleUserRepository.findByCreateTimeRange(createTimeStart);
     }
 
     public List<ComplexUser> findComplexUserOneDay() {
