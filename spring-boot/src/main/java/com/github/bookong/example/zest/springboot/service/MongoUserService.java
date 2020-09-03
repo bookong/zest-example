@@ -1,10 +1,13 @@
 package com.github.bookong.example.zest.springboot.service;
 
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
+import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser;
 import com.github.bookong.example.zest.springboot.base.mongo.repository.SimpleUserRepository;
+import com.github.bookong.example.zest.springboot.exception.ApiException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -26,7 +29,11 @@ public class MongoUserService extends AbstractService {
         user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
         user.setCreateTime(new Date());
 
-        simpleUserRepository.insert(user);
-        return user;
+        try {
+            simpleUserRepository.insert(user);
+            return user;
+        } catch (DuplicateKeyException e) {
+            throw new ApiException(ApiStatus.PARAM_ERROR, "data conflict");
+        }
     }
 }

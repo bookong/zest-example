@@ -27,8 +27,8 @@
         ]]></ParamField>
         <ParamField Name="apiExpected"><![CDATA[
 {
-    "code": 0,
-    "msg": ""
+    "code": 5,
+    "msg": "Parameter error(data conflict)"
 }
         ]]></ParamField>
     </Param>
