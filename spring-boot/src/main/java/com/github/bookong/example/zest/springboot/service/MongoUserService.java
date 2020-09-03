@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Jiang Xu
@@ -60,4 +61,13 @@ public class MongoUserService extends AbstractService {
 
         complexUserRepository.insert(user);
     }
+
+    public List<SimpleUser> findSimpleUserOneDay() {
+        return simpleUserRepository.findUserOneDay();
+    }
+
+    public List<ComplexUser> findComplexUserOneDay() {
+        return complexUserRepository.findUserOneDay();
+    }
+
 }

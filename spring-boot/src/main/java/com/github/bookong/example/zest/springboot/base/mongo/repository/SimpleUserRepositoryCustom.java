@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface SimpleUserRepositoryCustom {
 
-    /** 查询一周内新增用户 */
-    List<SimpleUser> addedUserWithinAWeek();
+    /** 查询一天内新增用户 */
+    List<SimpleUser> findUserOneDay();
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * @author Jiang Xu
  */
 @Repository
-public interface ComplexUserRepository extends MongoRepository<ComplexUser, String> {
+public interface ComplexUserRepository extends MongoRepository<ComplexUser, String>, ComplexUserRepositoryCustom {
 }
