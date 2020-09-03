@@ -4,9 +4,8 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserExtInf
 import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
-import com.github.bookong.example.zest.springboot.base.api.resp.user.UserResponse;
-import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.base.enums.ApiStatus;
+import com.github.bookong.example.zest.springboot.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
 import com.github.bookong.example.zest.springboot.service.MybatisUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,18 +44,6 @@ public class MyBatisUserController {
         }
         mybatisUserService.updateExtInfo(userId, param);
         return BaseResponse.OK;
-    }
-
-    /**
-     * 查询一个用户信息（演示使用 Redis 的情况）
-     */
-    @GetMapping("/{userId}")
-    @ResponseBody
-    public UserResponse get(@PathVariable("userId") Long userId) {
-        if (userId == null) {
-            throw new ApiException(ApiStatus.PARAM_ERROR, "userId is null");
-        }
-        return new UserResponse(mybatisUserService.get(userId));
     }
 
 }

@@ -13,10 +13,6 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27027/zestdemo
-  redis:
-    database: 0
-    host: localhost
-    port: 7000
 
 mybatis:
   mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
