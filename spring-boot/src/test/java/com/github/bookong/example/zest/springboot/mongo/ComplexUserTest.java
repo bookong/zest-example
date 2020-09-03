@@ -6,7 +6,7 @@ import com.github.bookong.example.zest.springboot.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
 import com.github.bookong.example.zest.springboot.base.api.resp.user.AddUserResponse;
 import com.github.bookong.example.zest.springboot.controller.MongoUserController;
-import com.github.bookong.example.zest.springboot.zest.ComplexMongoExecutor;
+import com.github.bookong.example.zest.springboot.custom.ComplexMongoExecutor;
 import com.github.bookong.zest.annotation.ZestSource;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;

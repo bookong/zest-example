@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.zest;
+package com.github.bookong.example.zest.springboot.custom;
 
 import com.github.bookong.example.zest.springboot.base.mongo.entity.Auth;
 import com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser;
@@ -8,6 +8,8 @@ import com.github.bookong.zest.testcase.ZestData;
 import com.github.bookong.zest.testcase.mongo.Collection;
 import com.github.bookong.zest.testcase.mongo.Document;
 import com.github.bookong.zest.util.ZestAssertUtil;
+import com.github.bookong.zest.util.ZestDateUtil;
+import com.github.bookong.zest.util.ZestJsonUtil;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.data.mongodb.core.MongoOperations;
 
@@ -21,6 +23,22 @@ import static org.springframework.test.util.AssertionErrors.*;
  */
 public class ComplexMongoExecutor extends MongoExecutor {
 
+    @Override
+    public Object createDocumentData(ZestData zestData, Class<?> entityClass, String collectionName, String xmlContent, boolean isVerifyElement) {
+        ComplexUser data = ZestJsonUtil.fromJson(xmlContent, ComplexUser.class);
+
+        data.setCreateTime(ZestDateUtil.getDateInZest(zestData, data.getCreateTime()));
+        List<Auth> authList = data.getAuthList();
+        if (authList != null) {
+            for (Auth auth : authList) {
+                auth.setExpirationTime(ZestDateUtil.getDateInZest(zestData, auth.getExpirationTime()));
+            }
+        }
+
+        return data;
+    }
+
+    @Override
     public void verifyDocument(MongoOperations operator, ZestData zestData, Source source, Collection collection, int rowIdx, Document expectedDocument, Object actualData) {
         ComplexUser expected = (ComplexUser) expectedDocument.getData();
         ComplexUser actual = (ComplexUser) actualData;
