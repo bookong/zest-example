@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.bookong.example.zest.springmvc.base.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.github.bookong.example.zest.springmvc.base.mybatis.entity.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="ext_info" jdbcType="VARCHAR" property="extInfo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, login_name, password, nickname, token, ext_info, create_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `user`
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.github.bookong.example.zest.springmvc.base.mybatis.entity.User" useGeneratedKeys="true">
+        insert into `user` (
+            login_name, password, nickname, token,
+            ext_info, create_time
+        )
+        values (
+            #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR},
+            #{extInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="updateExtInfo">
+        update `user`
+        set ext_info = json_set(ext_info, CONCAT('$.',#{key}), #{value})
+        where id = #{userId}
+    </update>
+
+    <select id="findByCreateTimeRange" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `user`
+        where
+        create_time >= #{createTimeStart}
+    </select>
+</mapper>

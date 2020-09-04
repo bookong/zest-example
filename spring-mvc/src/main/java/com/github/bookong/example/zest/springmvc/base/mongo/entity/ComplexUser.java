@@ -1,4 +1,4 @@
-package com.github.bookong.example.zest.springboot.base.mongo.entity;
+package com.github.bookong.example.zest.springmvc.base.mongo.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,7 +26,7 @@ public class ComplexUser implements Serializable {
 
     private List<Auth> authList;
 
-    private Date       createTime;
+    private Date createTime;
 
     public String getId() {
         return id;
@@ -83,5 +83,4 @@ public class ComplexUser implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
 }

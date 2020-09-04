@@ -25,7 +25,7 @@ import java.util.List;
 @ControllerAdvice
 public class CustomInterceptAdvice {
 
-    private static final Logger logger = LoggerFactory.getLogger(CustomInterceptAdvice.class);
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @ExceptionHandler(value = { Exception.class })
     @ResponseStatus(HttpStatus.OK)

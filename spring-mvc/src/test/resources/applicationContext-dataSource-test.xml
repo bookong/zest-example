@@ -15,7 +15,7 @@
     </bean>
 
     <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
-        <jdbc:script location="classpath:zest/schema_h2.sql" />
+        <jdbc:script location="classpath:init_data/schema_h2.sql" />
     </jdbc:initialize-database>
 
 </beans>

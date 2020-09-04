@@ -11,11 +11,11 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.github.bookong.example.zest.springmvc.base.entity" />
+        <property name="typeAliasesPackage" value="com.github.bookong.example.zest.springmvc.base.mybatis.entity" />
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.github.bookong.example.zest.springmvc.base.mapper" />
+        <property name="basePackage" value="com.github.bookong.example.zest.springmvc.base.mybatis.mapper" />
     </bean>
 
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

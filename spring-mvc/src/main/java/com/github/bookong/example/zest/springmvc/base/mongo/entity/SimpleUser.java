@@ -1,9 +1,19 @@
-package com.github.bookong.example.zest.springmvc.base.entity;
+package com.github.bookong.example.zest.springmvc.base.mongo.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-    private Long id;
+/**
+ * @author Jiang Xu
+ */
+@Document(collection = "user")
+public class SimpleUser implements Serializable {
+
+    @Id
+    private String id;
 
     private String loginName;
 
@@ -11,15 +21,15 @@ public class User {
 
     private String nickname;
 
-    private String extInfo;
+    private String token;
 
     private Date createTime;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,7 +38,7 @@ public class User {
     }
 
     public void setLoginName(String loginName) {
-        this.loginName = loginName == null ? null : loginName.trim();
+        this.loginName = loginName;
     }
 
     public String getPassword() {
@@ -36,7 +46,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getNickname() {
@@ -44,15 +54,15 @@ public class User {
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+        this.nickname = nickname;
     }
 
-    public String getExtInfo() {
-        return extInfo;
+    public String getToken() {
+        return token;
     }
 
-    public void setExtInfo(String extInfo) {
-        this.extInfo = extInfo == null ? null : extInfo.trim();
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Date getCreateTime() {
@@ -63,3 +73,4 @@ public class User {
         this.createTime = createTime;
     }
 }
+
