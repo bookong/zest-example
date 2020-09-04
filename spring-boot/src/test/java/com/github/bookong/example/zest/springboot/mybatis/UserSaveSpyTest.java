@@ -65,7 +65,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
         if (param.errorWhenInsertUserAuth) {
             // 模拟向 user_auth 表插入数据时发生异常
             // mock an exception occurred when inserting user_auth table data
-            BadSqlGrammarException e = new BadSqlGrammarException("zest test", "mock sql", new SQLException());
+            BadSqlGrammarException e = new BadSqlGrammarException("init_data test", "mock sql", new SQLException());
             doThrow(e).when(userService).addUserAuth(any(User.class));
         } else {
             doNothing().when(userService).addUserAuth(any(User.class));

@@ -20,7 +20,7 @@ spring:
       uri: mongodb://localhost:27017/zestdemo
 
 mybatis:
-  mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
+  mapper-locations: classpath:com/github/bookong/example/init_data/springboot/base/mapper/*.xml
 
 zestdemo:
   token: F2020

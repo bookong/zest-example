@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd"
-      CurrentTime="2020-08-10 10:11:12">
+      CurrentTime="2020-08-10T10:11:12.000+08:00">
     <Description>By defining the CurrentTime property, the query related to the current time is realized</Description>
     <Sources>
         <Source Id="mongo">

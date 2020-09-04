@@ -8,14 +8,14 @@ spring:
     name: zestdemo
     url: jdbc:h2:mem:zestdb;MODE=MYSQL;DB_CLOSE_DELAY=-1
     driverClassName: org.h2.Driver
-    schema: classpath:zest/schema_h2.sql
+    schema: classpath:init_data/schema_h2.sql
     type: org.apache.commons.dbcp2.BasicDataSource
   data:
     mongodb:
       uri: mongodb://localhost:27027/zestdemo
 
 mybatis:
-  mapper-locations: classpath:com/github/bookong/example/zest/springboot/base/mapper/*.xml
+  mapper-locations: classpath:com/github/bookong/example/init_data/springboot/base/mapper/*.xml
 
 zestdemo:
   token: F2020

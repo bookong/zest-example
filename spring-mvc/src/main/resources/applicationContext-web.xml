@@ -43,7 +43,7 @@
 <!--    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
 <!--        <property name="suffix" value=".vm" />-->
 <!--        <property name="contentType" value="text/html;charset=UTF-8" />-->
-<!--        <property name="viewClass" value="com.github.bookong.example.zest.springmvc.tools.VelocityToolbox2View" />-->
+<!--        <property name="viewClass" value="com.github.bookong.example.init_data.springmvc.tools.VelocityToolbox2View" />-->
 <!--    </bean>-->
 
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

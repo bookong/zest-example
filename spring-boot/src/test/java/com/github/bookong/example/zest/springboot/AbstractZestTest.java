@@ -147,7 +147,7 @@ public abstract class AbstractZestTest {
     }
 
     /**
-     * 这部分没有写在 zest 代码中是因为 JSONObject 的某些行为（例如验证是否为空对象）在不同版本不一致
+     * 这部分没有写在 init_data 代码中是因为 JSONObject 的某些行为（例如验证是否为空对象）在不同版本不一致
      */
     protected void doAssertEqual(String key, Long expected, JSONObject actual) {
         if (expected == null) {
