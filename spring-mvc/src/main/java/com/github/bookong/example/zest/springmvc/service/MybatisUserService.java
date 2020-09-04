@@ -96,4 +96,19 @@ public class MybatisUserService extends AbstractService {
         userAuth.setExpirationTime(DateUtils.addDays(new Date(), 3));
     }
 
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
+
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    public UserAuthMapper getUserAuthMapper() {
+        return userAuthMapper;
+    }
+
+    public void setUserAuthMapper(UserAuthMapper userAuthMapper) {
+        this.userAuthMapper = userAuthMapper;
+    }
 }

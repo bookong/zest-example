@@ -28,8 +28,8 @@ public class UserSaveSpyTest extends AbstractZestTest {
     private MyBatisUserController userController;
 
     /**
-     * 演示针对 /user/save 接口测试时，发生各种数据访问异常的情况
-     *
+     * 演示针对 /user/save 接口测试时，发生各种数据访问异常的情况<br>
+     * 
      * <pre>
      * 001.xml - An exception occurred when inserting user_auth table data, causing the transaction to roll back
      * </pre>
@@ -37,8 +37,8 @@ public class UserSaveSpyTest extends AbstractZestTest {
      * @see MyBatisUserController#add(UserParam)
      */
     // @ZestTest("001")
-    @ZestTest
     @Ignore
+    @ZestTest
     public void testAddSpy(Param param) {
         mockBefore(param);
         AddUserResponse expected = param.getExpected();
@@ -46,6 +46,9 @@ public class UserSaveSpyTest extends AbstractZestTest {
     }
 
     private void mockBefore(Param param) {
+        // 常规来说是通过下面的方法对 @Autowired 的对象进行 spy 。但这里不能正常执行的原因是 MyBatisUserController 的 add() 方法上添加了
+        // 注释 @Transactional(rollbackFor = Exception.class) ,这样 Spring 就将这个类给代理了，这与 Mockito.spy() 要做的事情冲突了
+        // 如果去掉 @Transactional(rollbackFor = Exception.class) 代码可以正常但事务不回滚，与期望不符。 Spring Boot 下没有这个问题
         MybatisUserService spyUserService = Mockito.spy(userService);
         userController.setMybatisUserService(spyUserService);
 

@@ -13,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.Advised;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -55,6 +57,17 @@ public abstract class AbstractZestTest {
     @AfterClass
     public static void tearDown() {
         // TODO
+    }
+
+    protected <T> T getTargetObject(Object proxy) {
+        if ((AopUtils.isJdkDynamicProxy(proxy))) {
+            try {
+                return (T) getTargetObject(((Advised) proxy).getTargetSource().getTarget());
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to unproxy target.", e);
+            }
+        }
+        return (T) proxy;
     }
 
     @Before
