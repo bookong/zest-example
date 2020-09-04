@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd">
+    <Description>An exception occurred when inserting user_auth table data, causing the transaction to roll back</Description>
+    <Sources/>
+    <Param>
+        <ParamField Name="auth">manage</ParamField>
+        <ParamField Name="initList"><![CDATA[
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "auth": "login",
+        "expirationTime": "2020-08-19T00:00:00.000+08:00"
+    }
+]
+        ]]></ParamField>
+        <ParamField Name="targetList"><![CDATA[
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "auth": "login",
+        "expirationTime": "2020-08-19T00:00:00.000+08:00"
+    },
+    {
+        "id": null,
+        "userId": 1,
+        "auth": "manage",
+        "expirationTime": "0001-01-01T00:00:00.000+08:00"
+    }
+]
+        ]]></ParamField>
+    </Param>
+</Zest>

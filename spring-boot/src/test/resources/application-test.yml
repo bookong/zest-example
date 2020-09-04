@@ -10,6 +10,11 @@ spring:
     driverClassName: org.h2.Driver
     schema: classpath:init_data/schema_h2.sql
     type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      max-wait-millis: 10000
+      min-idle: 10
+      initial-size: 10
+      validation-query: select 1 from dual
   data:
     mongodb:
       uri: mongodb://localhost:27027/zestdemo

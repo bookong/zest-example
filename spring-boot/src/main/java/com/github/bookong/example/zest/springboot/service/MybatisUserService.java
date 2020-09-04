@@ -8,6 +8,7 @@ import com.github.bookong.example.zest.springboot.base.mybatis.entity.UserAuth;
 import com.github.bookong.example.zest.springboot.base.mybatis.mapper.UserAuthMapper;
 import com.github.bookong.example.zest.springboot.base.mybatis.mapper.UserMapper;
 import com.github.bookong.example.zest.springboot.exception.ApiException;
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,28 @@ public class MybatisUserService extends AbstractService {
     public List<User> findSimpleUserOneDay(){
         Date createTimeStart = DateUtils.addDays(new Date(), -1);
         return userMapper.findByCreateTimeRange(createTimeStart);
+    }
+
+    public void addAuthToList(List<UserAuth> list, String auth) {
+        Long userId = null;
+        for (UserAuth item : list) {
+            if (userId == null) {
+                userId = item.getUserId();
+            }
+            if (StringUtils.equals(item.getAuth(), auth)) {
+                item.setExpirationTime(DateUtils.addDays(new Date(), 3));
+                return;
+            }
+        }
+
+        if (userId == null) {
+            return;
+        }
+
+        UserAuth userAuth = new UserAuth();
+        list.add(userAuth);
+        userAuth.setUserId(userId);
+        userAuth.setAuth(auth);
+        userAuth.setExpirationTime(DateUtils.addDays(new Date(), 3));
     }
 }
