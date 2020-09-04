@@ -19,14 +19,20 @@ import java.util.List;
 import static org.springframework.test.util.AssertionErrors.*;
 
 /**
+ * 扩展 MongoExecutor 应对复杂的 MongoDB Document ，需要覆盖两个方法
+ * 
  * @author Jiang Xu
  */
 public class ComplexMongoExecutor extends MongoExecutor {
 
+    /**
+     * 覆盖此方法，控制 Document 对象的创建
+     */
     @Override
     public Object createDocumentData(ZestData zestData, Class<?> entityClass, String collectionName, String xmlContent, boolean isVerifyElement) {
         ComplexUser data = ZestJsonUtil.fromJson(xmlContent, ComplexUser.class);
 
+        /** 对时间进行转换是为了测试与当前时间有关的查询 */
         data.setCreateTime(ZestDateUtil.getDateInZest(zestData, data.getCreateTime()));
         List<Auth> authList = data.getAuthList();
         if (authList != null) {
@@ -38,11 +44,13 @@ public class ComplexMongoExecutor extends MongoExecutor {
         return data;
     }
 
+    /** 覆盖此方法，自己控制单元测试执行后数据库中 Document 内容的验证 */
     @Override
     public void verifyDocument(MongoOperations operator, ZestData zestData, Source source, Collection collection, int rowIdx, Document expectedDocument, Object actualData) {
         ComplexUser expected = (ComplexUser) expectedDocument.getData();
         ComplexUser actual = (ComplexUser) actualData;
 
+        // 以 _RULE_ 的字符串 或 0001-01-01 开头的时间做为标识，这些内容使用规则进行验证
         if ("_RULE_".equals(expected.getId())) {
             ZestAssertUtil.verifyRegExpRule(zestData, "id", "^[0-9a-z]*$", actual.getId());
         } else {
