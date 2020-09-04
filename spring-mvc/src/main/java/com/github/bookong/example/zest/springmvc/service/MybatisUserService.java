@@ -12,9 +12,12 @@ import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.Date;
 import java.util.List;
@@ -26,29 +29,46 @@ import java.util.List;
 public class MybatisUserService extends AbstractService {
 
     @Autowired
-    private UserMapper     userMapper;
+    private UserMapper                   userMapper;
 
     @Autowired
-    private UserAuthMapper userAuthMapper;
+    private UserAuthMapper               userAuthMapper;
 
-    @Transactional(rollbackFor = Exception.class)
+    @Autowired
+    private DataSourceTransactionManager transactionManager;
+
+    // @Transactional(rollbackFor = Exception.class)
     public User add(UserParam param) {
         logger.info("add user login name \"{}\"", param.getLoginName());
-
-        User user = new User();
-        BeanUtils.copyProperties(param, user);
-        user.setPassword(convertPassword(param.getPassword()));
-        user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
-        user.setCreateTime(new Date());
-
+        TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
         try {
-            userMapper.insert(user);
-        } catch (DuplicateKeyException e) {
-            throw new ApiException(ApiStatus.PARAM_ERROR, "data conflict");
-        }
+            User user = new User();
+            BeanUtils.copyProperties(param, user);
+            user.setPassword(convertPassword(param.getPassword()));
+            user.setToken("USER_".concat(String.valueOf(System.currentTimeMillis())));
+            user.setCreateTime(new Date());
 
-        addUserAuth(user);
-        return user;
+            try {
+                userMapper.insert(user);
+            } catch (DuplicateKeyException e) {
+                throw new ApiException(ApiStatus.PARAM_ERROR, "data conflict");
+            }
+
+            addUserAuth(user);
+            transactionManager.commit(status);
+
+            return user;
+        } catch (Exception e) {
+            transactionManager.rollback(status);
+
+            if (e instanceof DataAccessException) {
+                throw e;
+            } else if (e instanceof ApiException) {
+                throw e;
+            } else {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void addUserAuth(User user) {
