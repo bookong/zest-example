@@ -1,6 +1,6 @@
 package com.github.bookong.example.zest.springmvc.base.api.param.user;
 
-import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Jiang Xu

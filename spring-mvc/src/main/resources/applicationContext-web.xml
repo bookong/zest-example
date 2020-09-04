@@ -29,4 +29,8 @@
 
     <bean id="serviceExceptionHandler" class="com.github.bookong.example.zest.springmvc.interceptor.ServiceExceptionHandler" />
 
+    <bean id="validator" class="org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+
 </beans>

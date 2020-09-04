@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd">
+    <Description>Update completed</Description>
+    <Sources>
+        <Source Id="mysql">
+            <Init>
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "jojo password",
+    "nickname": "Jonathan Joester",
+    "token": "jojo token",
+    "ext_info": "{\"key1\":\"value1\"}",
+    "create_time": "2020-08-19T00:00:00.000+08:00"
+}
+                    ]]></Data>
+                </Table>
+            </Init>
+            <Verify>
+                <Table Name="user">
+                    <Data><![CDATA[
+{
+    "id": 1,
+    "login_name": "jojo",
+    "password": "jojo password",
+    "nickname": "Jonathan Joester",
+    "token": "jojo token",
+    "ext_info": "{\"key1\":\"value1\",\"key2\":\"value2\"}",
+    "create_time": "2020-08-19T00:00:00.000+08:00"
+}
+                    ]]></Data>
+                </Table>
+            </Verify>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="userId">1</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "key": "key2",
+    "value" : "value2"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 0,
+    "msg": ""
+}
+        ]]></ParamField>
+    </Param>
+</Zest>

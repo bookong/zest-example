@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd">
+    <Description>Parameter loginName unique index conflict when adding</Description>
+    <Sources>
+        <Source Id="mysql">
+            <Init>
+                <Table Name="user">
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "jojo password", "nickname": "Jonathan Joester", "token": "jojo token", "ext_info": null, "create_time": "2020-08-19T00:00:00.000+08:00" }</Data>
+                </Table>
+                <Table Name="user_auth"/>
+            </Init>
+            <Verify>
+                <Table Name="user">
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "jojo password", "nickname": "Jonathan Joester", "token": "jojo token", "ext_info": null, "create_time": "2020-08-19T00:00:00.000+08:00" }</Data>
+                </Table>
+                <Table Name="user_auth"/>
+            </Verify>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "loginName": "jojo",
+    "nickname": "Dio Brando",
+    "password": "abc"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 5,
+    "msg": "Parameter error(data conflict)"
+}
+        ]]></ParamField>
+    </Param>
+</Zest>

@@ -1,10 +1,5 @@
 package com.github.bookong.example.zest.springmvc.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
 import com.github.bookong.example.zest.springmvc.base.api.param.user.UserExtInfoParam;
 import com.github.bookong.example.zest.springmvc.base.api.param.user.UserParam;
 import com.github.bookong.example.zest.springmvc.base.api.resp.BaseResponse;
@@ -14,6 +9,11 @@ import com.github.bookong.example.zest.springmvc.base.enums.ApiStatus;
 import com.github.bookong.example.zest.springmvc.base.mybatis.entity.User;
 import com.github.bookong.example.zest.springmvc.exception.ApiException;
 import com.github.bookong.example.zest.springmvc.service.MybatisUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * 这里演示对 MySQL 数据库进行存取的接口
@@ -32,7 +32,7 @@ public class MyBatisUserController {
      */
     @PostMapping("/add")
     @ResponseBody
-    public AddUserResponse add(@Validated @RequestBody UserParam param) {
+    public AddUserResponse add(@Valid @RequestBody UserParam param) {
         User user = mybatisUserService.add(param);
         return new AddUserResponse(user.getId());
     }
@@ -42,7 +42,7 @@ public class MyBatisUserController {
      */
     @PostMapping("/{userId}/ext-info-update")
     @ResponseBody
-    public BaseResponse updateExtInfo(@PathVariable("userId") Long userId, @Validated @RequestBody UserExtInfoParam param) {
+    public BaseResponse updateExtInfo(@PathVariable("userId") Long userId, @Valid @RequestBody UserExtInfoParam param) {
         if (userId == null) {
             throw new ApiException(ApiStatus.PARAM_ERROR, "userId is null");
         }
