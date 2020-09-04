@@ -9,7 +9,6 @@ import com.github.bookong.example.zest.springboot.controller.MyBatisUserControll
 import com.github.bookong.example.zest.springboot.service.MybatisUserService;
 import com.github.bookong.zest.annotation.ZestTest;
 import com.github.bookong.zest.util.ZestJsonUtil;
-import net.sf.json.JSONObject;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.mockito.InjectMocks;
@@ -55,9 +54,7 @@ public class UserSaveSpyTest extends AbstractZestTest {
             mockBefore(param);
 
             AddUserResponse expected = param.getExpected();
-            JSONObject actual = doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
-
-            doAssertEqual("id", expected.getId(), actual);
+            doPostAndBaseVerify(param.makeUrl(), ZestJsonUtil.toJson(param.apiParam), expected, true);
         });
     }
 

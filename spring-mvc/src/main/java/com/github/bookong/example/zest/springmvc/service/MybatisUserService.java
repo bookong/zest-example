@@ -95,4 +95,5 @@ public class MybatisUserService extends AbstractService {
         userAuth.setAuth(auth);
         userAuth.setExpirationTime(DateUtils.addDays(new Date(), 3));
     }
+
 }

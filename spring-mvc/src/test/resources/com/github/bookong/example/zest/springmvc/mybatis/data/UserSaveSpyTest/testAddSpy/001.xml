@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd">
+    <Description>An exception occurred when inserting user_auth table data, causing the transaction to roll back</Description>
+    <Sources>
+        <Source Id="mysql">
+            <Init>
+                <Table Name="user" />
+                <Table Name="user_auth"/>
+            </Init>
+            <Verify>
+                <Table Name="user" />
+                <Table Name="user_auth"/>
+            </Verify>
+        </Source>
+    </Sources>
+    <Param>
+        <ParamField Name="apiToken">F2020</ParamField>
+        <ParamField Name="apiParam"><![CDATA[
+{
+    "loginName": "dio",
+    "nickname": "Dio Brando",
+    "password": "abc"
+}
+        ]]></ParamField>
+        <ParamField Name="apiExpected"><![CDATA[
+{
+    "code": 3,
+    "msg": "Data access exception"
+}
+        ]]></ParamField>
+        <ParamField Name="errorWhenInsertUserAuth">true</ParamField>
+    </Param>
+</Zest>

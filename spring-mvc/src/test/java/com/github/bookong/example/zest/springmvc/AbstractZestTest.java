@@ -1,29 +1,22 @@
-package com.github.bookong.example.zest.springboot;
+package com.github.bookong.example.zest.springmvc;
 
-import com.github.bookong.example.zest.springboot.base.api.resp.BaseResponse;
+import com.github.bookong.example.zest.springmvc.base.api.resp.BaseResponse;
 import com.github.bookong.zest.annotation.ZestSource;
-import com.github.bookong.zest.executor.MongoExecutor;
-import com.github.bookong.zest.runner.junit5.ZestJUnit5Worker;
-import de.flapdoodle.embed.mongo.MongodExecutable;
-import de.flapdoodle.embed.mongo.MongodProcess;
-import de.flapdoodle.embed.mongo.MongodStarter;
-import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
-import de.flapdoodle.embed.mongo.config.Net;
-import de.flapdoodle.embed.mongo.distribution.Version;
-import de.flapdoodle.embed.process.runtime.Network;
+import com.github.bookong.zest.runner.junit4.ZestSpringJUnit4ClassRunner;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -34,65 +27,41 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.sql.DataSource;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
-import static org.springframework.test.util.AssertionErrors.assertNull;
 
 /**
  * @author Jiang Xu
  */
-@ActiveProfiles("test")
-@SpringBootTest
+@RunWith(ZestSpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(locations = { "classpath:applicationContext-test.xml" })
 public abstract class AbstractZestTest {
 
-    protected static final Logger        logger     = LoggerFactory.getLogger(AbstractZestTest.class);
-
-    protected static final MongodStarter starter    = MongodStarter.getDefaultInstance();
-    protected static final String        host       = "127.0.0.1";
-    protected static final int           port       = 27027;
-
-    protected static MongodExecutable    mongodExe;
-    protected static MongodProcess       mongod;
-
-    protected ZestJUnit5Worker           zestWorker = new ZestJUnit5Worker();
+    protected static final Logger logger = LoggerFactory.getLogger(AbstractZestTest.class);
 
     @Autowired
     @ZestSource("mysql")
-    protected DataSource                 dataSource;
+    protected DataSource          dataSource;
 
     @Autowired
-    @ZestSource(value = "mongo", executorClass = MongoExecutor.class)
-    protected MongoTemplate              mongoTemplate;
+    private WebApplicationContext context;
 
-    @Autowired
-    private WebApplicationContext        context;
+    private MockMvc               mockMvc;
 
-    private MockMvc                      mockMvc;
-
-    @BeforeAll
+    @BeforeClass
     public static void setUp() throws Exception {
-        logger.info("start embed MongoDB on {}:{}...", host, port);
-        mongodExe = starter.prepare(new MongodConfigBuilder().version(Version.Main.PRODUCTION) //
-                                                             .net(new Net(host, port, Network.localhostIsIPv6())) //
-                                                             .build());
-        mongod = mongodExe.start();
+        // TODO
     }
 
-    @AfterAll
+    @AfterClass
     public static void tearDown() {
-        logger.info("stop embed MongoDB...");
-
-        if (mongod != null) {
-            mongod.stop();
-        }
-
-        if (mongodExe != null) {
-            mongodExe.stop();
-        }
+        // TODO
     }
 
-    @BeforeEach
+    @Before
     public void setupMockMvc() throws Exception {
-        logger.info("setup MockMvc...");
+        logger.info("setup MockMvc ...");
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        logger.info("setup Mockito ...");
         MockitoAnnotations.initMocks(this);
     }
 
@@ -148,10 +117,9 @@ public abstract class AbstractZestTest {
 
     protected void doAssertEqual(String key, Long expected, JSONObject actual) {
         if (expected == null) {
-            assertNull(String.format("%s must null", key), actual.get(key));
+            Assert.assertNull(String.format("%s must null", key), actual.get(key));
         } else {
-            assertEquals(key, expected, actual.getLong(key));
+            Assert.assertEquals(key, expected.longValue(), actual.getLong(key));
         }
     }
-
 }

@@ -1,0 +1,30 @@
+package com.github.bookong.example.zest.springmvc;
+
+import com.github.bookong.example.zest.springmvc.base.api.resp.BaseResponse;
+import com.github.bookong.zest.testcase.ZestParam;
+import com.github.bookong.zest.util.ZestJsonUtil;
+import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.ParameterizedType;
+
+/**
+ * @author Jiang Xu
+ */
+public abstract class AbstractZestParam<T extends BaseResponse> extends ZestParam {
+
+    public String  apiToken;
+    private T      expectedObj;
+    private String apiExpected;
+
+    protected String makeUrl(String url) {
+        return StringUtils.isBlank(apiToken) ? url : String.format("%s?token=%s", url, apiToken);
+    }
+
+    public T getExpected() {
+        if (expectedObj == null) {
+            Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+            expectedObj = ZestJsonUtil.fromJson(apiExpected, clazz);
+        }
+        return expectedObj;
+    }
+}

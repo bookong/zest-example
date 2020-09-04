@@ -58,4 +58,12 @@ public class MyBatisUserController {
     public UserOneDayResponse findUserOneDay() {
         return new UserOneDayResponse(mybatisUserService.findSimpleUserOneDay());
     }
+
+    public MybatisUserService getMybatisUserService() {
+        return mybatisUserService;
+    }
+
+    public void setMybatisUserService(MybatisUserService mybatisUserService) {
+        this.mybatisUserService = mybatisUserService;
+    }
 }

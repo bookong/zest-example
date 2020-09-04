@@ -15,9 +15,9 @@
 
     <loggers>
 
-        <logger name="zest_sql" level="debug" additivity="false">
-            <appender-ref ref="ZestSqlConsole" />
-        </logger>
+        <!--        <logger name="zest_sql" level="debug" additivity="false">-->
+        <!--            <appender-ref ref="ZestSqlConsole" />-->
+        <!--        </logger>-->
 
         <Root level="info">
             <appender-ref ref="Console"/>
