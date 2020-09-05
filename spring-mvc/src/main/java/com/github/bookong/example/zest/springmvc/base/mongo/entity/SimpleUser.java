@@ -1,6 +1,7 @@
 package com.github.bookong.example.zest.springmvc.base.mongo.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ public class SimpleUser implements Serializable {
     @Id
     private String id;
 
+    @Indexed(unique = true)
     private String loginName;
 
     private String password;
@@ -23,6 +25,7 @@ public class SimpleUser implements Serializable {
 
     private String token;
 
+    @Indexed
     private Date createTime;
 
     public String getId() {

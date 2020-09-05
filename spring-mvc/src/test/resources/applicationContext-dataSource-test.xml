@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"  xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xsi:schemaLocation="
-        http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-        http://www.springframework.org/schema/jdbc      http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+        http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+        http://www.springframework.org/schema/jdbc       http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
+    <!-- H2 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
         <constructor-arg>
             <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
@@ -18,4 +20,13 @@
         <jdbc:script location="classpath:init_data/schema_h2.sql" />
     </jdbc:initialize-database>
 
+    <!-- Embed MongoDB -->
+    <mongo:mongo id="mongo" replica-set="localhost:27017" write-concern="SAFE" >
+        <mongo:options
+                connections-per-host="10"
+                threads-allowed-to-block-for-connection-multiplier="10"
+                slave-ok="true" />
+    </mongo:mongo>
+
+    <mongo:db-factory id="mongoDbFactory" mongo-ref="mongo" dbname="${mongo.db}" />
 </beans>
