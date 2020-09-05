@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Jiang Xu
  */
-public class SimpleMongoExecutor extends MongoExecutor {
+public class CustomMongoExecutor extends MongoExecutor {
 
     @Override
     protected void removeAll(ZestWorker worker, Source source, Collection collection) {

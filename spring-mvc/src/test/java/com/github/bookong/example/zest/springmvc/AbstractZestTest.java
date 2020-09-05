@@ -1,9 +1,8 @@
 package com.github.bookong.example.zest.springmvc;
 
 import com.github.bookong.example.zest.springmvc.base.api.resp.BaseResponse;
-import com.github.bookong.example.zest.springmvc.custom.SimpleMongoExecutor;
+import com.github.bookong.example.zest.springmvc.custom.CustomMongoExecutor;
 import com.github.bookong.zest.annotation.ZestSource;
-import com.github.bookong.zest.executor.MongoExecutor;
 import com.github.bookong.zest.runner.junit4.ZestSpringJUnit4ClassRunner;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
@@ -48,7 +47,7 @@ public abstract class AbstractZestTest {
     protected DataSource          dataSource;
 
     @Autowired
-    @ZestSource(value = "mongo", executorClass = SimpleMongoExecutor.class)
+    @ZestSource(value = "mongo", executorClass = CustomMongoExecutor.class)
     protected MongoTemplate       mongoTemplate;
 
     @Autowired

@@ -3,6 +3,7 @@ package com.github.bookong.example.zest.springmvc.custom;
 import com.github.bookong.example.zest.springmvc.base.mongo.entity.Auth;
 import com.github.bookong.example.zest.springmvc.base.mongo.entity.ComplexUser;
 import com.github.bookong.zest.executor.MongoExecutor;
+import com.github.bookong.zest.runner.ZestWorker;
 import com.github.bookong.zest.testcase.Source;
 import com.github.bookong.zest.testcase.ZestData;
 import com.github.bookong.zest.testcase.mongo.Collection;
@@ -13,6 +14,7 @@ import com.github.bookong.zest.util.ZestJsonUtil;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.junit.Assert;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.Calendar;
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.List;
  * 
  * @author Jiang Xu
  */
-public class ComplexMongoExecutor extends MongoExecutor {
+public class ComplexMongoExecutor extends CustomMongoExecutor {
 
     /**
      * 覆盖此方法，控制 Document 对象的创建
