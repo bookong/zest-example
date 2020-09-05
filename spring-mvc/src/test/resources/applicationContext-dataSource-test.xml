@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
         http://www.springframework.org/schema/jdbc       http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
-    <!-- H2 -->
+    <!-- H2: Fake MySQL -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
         <constructor-arg>
             <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
@@ -20,13 +20,11 @@
         <jdbc:script location="classpath:init_data/schema_h2.sql" />
     </jdbc:initialize-database>
 
-    <!-- Embed MongoDB -->
-    <mongo:mongo id="mongo" replica-set="localhost:27017" write-concern="SAFE" >
-        <mongo:options
-                connections-per-host="10"
-                threads-allowed-to-block-for-connection-multiplier="10"
-                slave-ok="true" />
-    </mongo:mongo>
+    <!-- Fongo: Fake MongoDB -->
+    <bean name="fongo" class="com.github.fakemongo.Fongo">
+        <constructor-arg value="InMemoryMongo" />
+    </bean>
+    <bean id="mongo" factory-bean="fongo" factory-method="getMongo" />
 
     <mongo:db-factory id="mongoDbFactory" mongo-ref="mongo" dbname="${mongo.db}" />
 </beans>
