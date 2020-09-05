@@ -5,7 +5,7 @@
     <Sources>
         <Source Id="complexMongo">
             <Init>
-                <Table Name="user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser">
+                <Table Name="c_user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser">
                     <Data><![CDATA[
 {
     "id": "1",
@@ -20,7 +20,7 @@
                 </Table>
             </Init>
             <Verify>
-                <Table Name="user" >
+                <Table Name="c_user" >
                     <Data><![CDATA[
 {
     "id": "1",

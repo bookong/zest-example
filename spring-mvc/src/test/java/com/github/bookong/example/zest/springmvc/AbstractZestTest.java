@@ -2,7 +2,15 @@ package com.github.bookong.example.zest.springmvc;
 
 import com.github.bookong.example.zest.springmvc.base.api.resp.BaseResponse;
 import com.github.bookong.zest.annotation.ZestSource;
+import com.github.bookong.zest.executor.MongoExecutor;
 import com.github.bookong.zest.runner.junit4.ZestSpringJUnit4ClassRunner;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
+import de.flapdoodle.embed.mongo.config.Net;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
 import org.junit.AfterClass;
@@ -16,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -38,25 +47,48 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 @ContextConfiguration(locations = { "classpath:applicationContext-test.xml" })
 public abstract class AbstractZestTest {
 
-    protected static final Logger logger = LoggerFactory.getLogger(AbstractZestTest.class);
+    protected static final Logger        logger  = LoggerFactory.getLogger(AbstractZestTest.class);
+
+    protected static final MongodStarter starter = MongodStarter.getDefaultInstance();
+    protected static final String        host    = "127.0.0.1";
+    protected static final int           port    = 27027;
+
+    protected static MongodExecutable    mongodExe;
+    protected static MongodProcess       mongod;
 
     @Autowired
     @ZestSource("mysql")
-    protected DataSource          dataSource;
+    protected DataSource                 dataSource;
 
     @Autowired
-    private WebApplicationContext context;
+    @ZestSource(value = "mongo", executorClass = MongoExecutor.class)
+    protected MongoTemplate              mongoTemplate;
 
-    private MockMvc               mockMvc;
+    @Autowired
+    private WebApplicationContext        context;
+
+    private MockMvc                      mockMvc;
 
     @BeforeClass
     public static void setUp() throws Exception {
-        // TODO
+        logger.info("start embed MongoDB on {}:{}...", host, port);
+        mongodExe = starter.prepare(new MongodConfigBuilder().version(Version.Main.PRODUCTION) //
+                                                             .net(new Net(host, port, Network.localhostIsIPv6())) //
+                                                             .build());
+        mongod = mongodExe.start();
     }
 
     @AfterClass
     public static void tearDown() {
-        // TODO
+        logger.info("stop embed MongoDB...");
+
+        if (mongod != null) {
+            mongod.stop();
+        }
+
+        if (mongodExe != null) {
+            mongodExe.stop();
+        }
     }
 
     protected <T> T getTargetObject(Object proxy) {

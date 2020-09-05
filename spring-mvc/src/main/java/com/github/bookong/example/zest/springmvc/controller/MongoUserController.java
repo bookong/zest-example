@@ -35,16 +35,16 @@ public class MongoUserController {
         return new UserOneDayResponse(mongoUserService.findSimpleUserOneDay());
     }
 
-//    @PostMapping("/complex/add")
-//    @ResponseBody
-//    public BaseResponse complexAdd(@Validated @RequestBody UserParam param) {
-//        mongoUserService.complexAdd(param);
-//        return BaseResponse.OK;
-//    }
-//
-//    @GetMapping("/complex/one-day")
-//    @ResponseBody
-//    public UserOneDayResponse findComplexUserOneDay() {
-//        return new UserOneDayResponse(mongoUserService.findComplexUserOneDay());
-//    }
+    @PostMapping("/complex/add")
+    @ResponseBody
+    public BaseResponse complexAdd(@Validated @RequestBody UserParam param) {
+        mongoUserService.complexAdd(param);
+        return BaseResponse.OK;
+    }
+
+    @GetMapping("/complex/one-day")
+    @ResponseBody
+    public UserOneDayResponse findComplexUserOneDay() {
+        return new UserOneDayResponse(mongoUserService.findComplexUserOneDay());
+    }
 }

@@ -6,7 +6,7 @@
     <Sources>
         <Source Id="complexMongo">
             <Init>
-                <Table Name="user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser">
+                <Table Name="c_user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.ComplexUser">
                     <Data><![CDATA[
 {
     "id": "1",
