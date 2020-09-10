@@ -279,6 +279,12 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.github.bookong</groupId>
+                <artifactId>zest-generator</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </plugin>
         </plugins>
     </build>
 
