@@ -6,13 +6,13 @@
         <Source Id="mysql">
             <Init>
                 <Table Name="user">
-                    <Data>{ "id": 1, "login_name": "jojo", "password": "jojo password", "nickname": "Jonathan Joester", "token": "jojo token", "ext_info": null, "create_time": "2020-08-19T00:00:00.000+08:00" }</Data>
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "jojo password", "nickname": "Jonathan Joester", "token": "jojo token", "ext_info": null, "create_time": "2020-08-19T00:00:00.000+08" }</Data>
                 </Table>
                 <Table Name="user_auth"/>
             </Init>
             <Verify>
                 <Table Name="user">
-                    <Data>{ "id": 1, "login_name": "jojo", "password": "jojo password", "nickname": "Jonathan Joester", "token": "jojo token", "ext_info": null, "create_time": "2020-08-19T00:00:00.000+08:00" }</Data>
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "jojo password", "nickname": "Jonathan Joester", "token": "jojo token", "ext_info": null, "create_time": "2020-08-19T00:00:00.000+08" }</Data>
                 </Table>
                 <Table Name="user_auth"/>
             </Verify>

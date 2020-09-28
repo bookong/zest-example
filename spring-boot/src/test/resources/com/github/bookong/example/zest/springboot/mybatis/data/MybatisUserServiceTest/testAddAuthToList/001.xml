@@ -11,7 +11,7 @@
         "id": 1,
         "userId": 1,
         "auth": "login",
-        "expirationTime": "2020-08-19T00:00:00.000+08:00"
+        "expirationTime": "2020-08-19T00:00:00.000+08"
     }
 ]
         ]]></ParamField>
@@ -21,13 +21,13 @@
         "id": 1,
         "userId": 1,
         "auth": "login",
-        "expirationTime": "2020-08-19T00:00:00.000+08:00"
+        "expirationTime": "2020-08-19T00:00:00.000+08"
     },
     {
         "id": null,
         "userId": 1,
         "auth": "manage",
-        "expirationTime": "0001-01-01T00:00:00.000+08:00"
+        "expirationTime": "0001-01-01T00:00:00.000+08"
     }
 ]
         ]]></ParamField>

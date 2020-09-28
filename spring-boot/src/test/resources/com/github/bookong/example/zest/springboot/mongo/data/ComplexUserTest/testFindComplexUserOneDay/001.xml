@@ -17,10 +17,10 @@
     "authList": [
         {
             "auth": "login",
-            "expirationTime": "0001-01-01T00:00:00.000+08:00"
+            "expirationTime": "0001-01-01T00:00:00.000+08"
         }
     ],
-    "createTime": "2020-08-09T10:12:00.000+08:00"
+    "createTime": "2020-08-09T10:12:00.000+08"
 }
                     ]]></Data>
                     <Data><![CDATA[
@@ -33,10 +33,10 @@
     "authList": [
         {
             "auth": "login",
-            "expirationTime": "0001-01-01T00:00:00.000+08:00"
+            "expirationTime": "0001-01-01T00:00:00.000+08"
         }
     ],
-    "createTime": "2020-08-09T10:11:00.000+08:00"
+    "createTime": "2020-08-09T10:11:00.000+08"
 }
                     ]]></Data>
                 </Table>
