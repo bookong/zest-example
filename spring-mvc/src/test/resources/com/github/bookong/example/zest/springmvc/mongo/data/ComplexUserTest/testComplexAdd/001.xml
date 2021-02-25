@@ -14,7 +14,7 @@
     "nickname": "Jonathan Joester",
     "token": "something",
     "authList": null,
-    "createTime": "2020-08-19T00:00:00.000+08"
+    "createTime": "2020-08-19T00:00:00.000+0800"
 }
                     ]]></Data>
                 </Table>
@@ -29,7 +29,7 @@
     "nickname": "Jonathan Joester",
     "token": "something",
     "authList": null,
-    "createTime": "2020-08-19T00:00:00.000+08"
+    "createTime": "2020-08-19T00:00:00.000+0800"
 }
                     ]]></Data>
                     <Data><![CDATA[
@@ -42,10 +42,10 @@
     "authList": [
         {
             "auth": "login",
-            "expirationTime": "0001-01-01T00:00:00.000+08"
+            "expirationTime": "0001-01-01T00:00:00.000+0800"
         }
     ],
-    "createTime": "0001-01-01T00:00:00.000+08"
+    "createTime": "0001-01-01T00:00:00.000+0800"
 }
                     ]]></Data>
                 </Table>

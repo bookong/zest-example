@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Zest xmlns="https://www.bookong.net/schema/zest/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="https://www.bookong.net/schema/zest/data classpath:/com/github/bookong/zest/zest-data-1.0.xsd"
-      CurrentTime="2020-08-10T10:11:12.000+08">
+      CurrentTime="2020-08-10T10:11:12.000+0800">
     <Description>By defining the CurrentTime property, the query related to the current time is realized</Description>
     <Sources>
         <Source Id="mysql">
             <Init>
                 <Table Name="user">
-                    <Data>{ "id": 1, "login_name": "jojo", "password": "", "nickname": "Jonathan Joester", "token":"", "create_time": "2020-08-09T10:12:00.000+08" }</Data>
-                    <Data>{ "id": 2, "login_name": "dio",  "password": "", "nickname": "Dio Brando",       "token":"", "create_time": "2020-08-09T10:11:00.000+08" }</Data>
+                    <Data>{ "id": 1, "login_name": "jojo", "password": "", "nickname": "Jonathan Joester", "token":"", "create_time": "2020-08-09T10:12:00.000+0800" }</Data>
+                    <Data>{ "id": 2, "login_name": "dio",  "password": "", "nickname": "Dio Brando",       "token":"", "create_time": "2020-08-09T10:11:00.000+0800" }</Data>
                 </Table>
             </Init>
             <Verify Ignore="true"/>

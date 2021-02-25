@@ -6,12 +6,12 @@
         <Source Id="mongo">
             <Init>
                 <Table Name="user" EntityClass="com.github.bookong.example.zest.springboot.base.mongo.entity.SimpleUser">
-                    <Data>{ "id": "1", "loginName": "jojo", "password": "something", "nickname": "Jonathan Joester", "token": "something", "createTime": "2020-08-19T00:00:00.000+08" }</Data>
+                    <Data>{ "id": "1", "loginName": "jojo", "password": "something", "nickname": "Jonathan Joester", "token": "something", "createTime": "2020-08-19T00:00:00.000+0800" }</Data>
                 </Table>
             </Init>
             <Verify>
                 <Table Name="user">
-                    <Data>{ "id": "1", "loginName": "jojo", "password": "something", "nickname": "Jonathan Joester", "token": "something", "createTime": "2020-08-19T00:00:00.000+08" }</Data>
+                    <Data>{ "id": "1", "loginName": "jojo", "password": "something", "nickname": "Jonathan Joester", "token": "something", "createTime": "2020-08-19T00:00:00.000+0800" }</Data>
                 </Table>
             </Verify>
         </Source>

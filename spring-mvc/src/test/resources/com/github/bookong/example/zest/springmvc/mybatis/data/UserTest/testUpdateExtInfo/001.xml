@@ -14,7 +14,7 @@
     "nickname": "Jonathan Joester",
     "token": "jojo token",
     "ext_info": "{\"key1\":\"value1\"}",
-    "create_time": "2020-08-19T00:00:00.000+08"
+    "create_time": "2020-08-19T00:00:00.000+0800"
 }
                     ]]></Data>
                 </Table>
@@ -29,7 +29,7 @@
     "nickname": "Jonathan Joester",
     "token": "jojo token",
     "ext_info": "{\"key1\":\"value1\",\"key2\":\"value2\"}",
-    "create_time": "2020-08-19T00:00:00.000+08"
+    "create_time": "2020-08-19T00:00:00.000+0800"
 }
                     ]]></Data>
                 </Table>
