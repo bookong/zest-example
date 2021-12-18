@@ -15,7 +15,7 @@
         <springframework-version>5.2.8.RELEASE</springframework-version>
         <slf4j-version>1.7.5</slf4j-version>
         <jackson-version>2.11.2</jackson-version>
-        <log4j-version>2.13.3</log4j-version>
+        <log4j-version>2.17.0</log4j-version>
         <webapp-folder>src/main/webapp</webapp-folder>
     </properties>
 
